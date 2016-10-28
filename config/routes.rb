@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
   # Define root URI
@@ -8,3 +9,4 @@ Rails.application.routes.draw do
   get '/contacts'	=> 'pages#contacts'
 
 end
+
