@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # Define root URI
+  root 'pages#launchpad'
+  	
+  # Define routes for pages
+  get '/launchpad' => 'pages#launchpad'
+  get '/contacts'	=> 'pages#contacts'
+
 end
