@@ -11,5 +11,47 @@
  * It is generally better to create a new file per style scope.
  *
  */
+
+ /*"bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"*/
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.dummy {
+    margin-top: 100%;
+}
+.thumbnail {
+    position: absolute;
+    top: 15px;
+    bottom: 0;
+    left: 15px;
+    right: 0;
+    text-align:center;
+    /*padding-top:calc(50% - 30px);*/
+    padding-top: 25%;
+    margin-right: 5%;
+    background-color: #1a82d4;
+    color: white;
+    font-size: xx-large;
+
+    /*font-size: 250%;*/
+}
+
+a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
+    color: white;
+    text-decoration: inherit;
+    background-color: #6fadf3;
+}
+
+
+.navbar {
+	background-color: #1a82d4; 
+}
+
+.navbar-brand {
+  font-size: 25px;
+  line-height: 35px;
+  height: 70px;
+  color: white !important;
+  font-weight: bolder;
+}
