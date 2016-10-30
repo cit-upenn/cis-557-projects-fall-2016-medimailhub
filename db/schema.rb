@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20161029180547) do
     t.string   "last_name"
     t.string   "phone_one"
     t.string   "phone_two"
-    t.date     "d_o_b"
+    t.datetime "d_o_b"
     t.         "gender"
     t.         "role"
     t.index ["email"], name: "index_users_on_email", unique: true
