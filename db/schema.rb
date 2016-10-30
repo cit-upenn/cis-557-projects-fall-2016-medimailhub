@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20161029180547) do
     t.string   "phone_one"
     t.string   "phone_two"
     t.datetime "d_o_b"
-    t.         "gender"
-    t.         "role"
+    t.string   "gender"
+    t.string   "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

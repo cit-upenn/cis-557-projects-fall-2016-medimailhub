@@ -1,7 +1,9 @@
 <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2>-->
-<h2>Edit Profile</h2>
+<br>
+<%= render 'layouts/error_messages', object: resource %>
+<center><h2>Edit Your Profile</h2></center>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <!--<%= devise_error_messages! %>-->
 
   <div class="field">
     <%= f.label :email, 'Email Id' %><br />
@@ -45,13 +47,13 @@
 
   <br>
   <div class='row'>
-  <div class="col-xs-3"><%= radio_button_tag(:gender, :male) %><%= label_tag(:gender, "Male") %></div>
-  <div class="col-xs-6"><%= radio_button_tag(:gender, :female) %><%= label_tag(:gender, "Female") %></div>
+  <div class="col-md-1 col-xs-3"><%= radio_button_tag(:gender, :male) %><%= label_tag(:gender, "Male") %></div>
+  <div class="col-md-11 col-xs-6"><%= radio_button_tag(:gender, :female) %><%= label_tag(:gender, "Female") %></div>
   </div>
   
   <div class='row'>
-  <div class="col-xs-3"><%= radio_button_tag(:role, :doctor) %><%= label_tag(:role, "Doctor") %></div>
-  <div class="col-xs-6"><%= radio_button_tag(:role, :patient) %><%= label_tag(:role, "Paient") %></div>
+  <div class="col-md-1 col-xs-3"><%= radio_button_tag(:role, :doctor) %><%= label_tag(:role, "Doctor") %></div>
+  <div class="col-md-11 col-xs-6"><%= radio_button_tag(:role, :patient) %><%= label_tag(:role, "Paient") %></div>
   </div>
 
   <br>
@@ -76,15 +78,15 @@
     <%= f.password_field :current_password, autocomplete: "off",placeholder: 'we need your current password to confirm your changes', class: 'form-control' %>
   </div>
 
+  <center>
   <br>
   <div class="actions">
-    <%= f.submit "Update", class:'btn-default btn-medium button-signup ' %>
+    <%= f.submit "Update", class:'btn btn-large btn-primary ' %>
   </div>
+  </center>
 
 <% end %>
 
-<h3>Cancel my account</h3>
+<small><%= link_to "cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete  %></small>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete  %></p>
-
-<%= link_to "Back", :back %>
+<!--<%= link_to "Back", :back %>-->
