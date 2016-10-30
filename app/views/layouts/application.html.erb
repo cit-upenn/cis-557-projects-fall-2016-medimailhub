@@ -12,9 +12,10 @@
 
   <body>
   	<%= render '/layouts/nav_guest' %>
+    <br><br><br>
     <div class='container'>
-      <span class="notice"><%= notice %></span>
-      <span class="alert"><%= alert %></span>
+      <span class="notice hidden"><%= notice %></span>
+      <span class="alert hidden"><%= alert %></span>
       <%= yield %>
     </div>
   </body>
