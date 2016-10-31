@@ -26,7 +26,7 @@
   <%= devise_error_messages! %>
   
   <div class="field">
-    <%= f.email_field :email, autofocus: true, placeholder: 'Email Id', class: 'form-control' %>
+    <%= f.email_field :email, autofocus: true, placeholder: 'Email Id', class: 'form-control', id: 'signup-email' %>
   </div>
 
   <div class="field">
@@ -71,12 +71,12 @@
     <em>(<%= @minimum_password_length %> characters minimum)</em> 
     <% end %>-->
     <br />
-    <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control' %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control', id: 'signup-password' %>
   </div>
 
   <div class="field">
     <br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm Password', class: 'form-control' %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm Password', class: 'form-control', id:'signup-password-confirm' %>
   </div>
   
   <br>
