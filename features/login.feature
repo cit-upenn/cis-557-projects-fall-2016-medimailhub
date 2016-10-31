@@ -1,6 +1,8 @@
 Feature: User in the log in page
-		 As a registered user
-		 I want to log in with my Email and Password
+
+As a user,
+I want to log into my account successfully
+So that I can access the launchpad
 
 
 	Scenario: log in with valid credentials

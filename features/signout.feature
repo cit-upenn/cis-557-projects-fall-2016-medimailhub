@@ -1,6 +1,8 @@
-Feature: User in the launchpad
-         As a registered user
-		 I want to logout
+Feature: User in sign out
+         
+As a user,
+I want to log out of my account successfully
+So that I can access the sign up page
 
 
 Scenario: User sign out

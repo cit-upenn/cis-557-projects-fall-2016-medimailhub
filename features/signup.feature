@@ -1,8 +1,8 @@
 Feature: User Sign up page
   
-  As a user
-  So that I can signup 
-  I want to add a new user 
+As a user,
+I want to create an account successfully
+So that I can access the application
   
 	Scenario: Add an user with valid data
 		Given I'm on the user Sign up page

@@ -157,3 +157,43 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     color: white;
     text-align: left;
  }
+
+ .custom-white {
+  color: white;
+ }
+
+
+ /*Autofill yellow*/
+ input:-webkit-autofill {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #6fadf3 inset;
+}
+input:-moz-autofill {
+  -moz-text-fill-color: white;
+  -moz-box-shadow: 0 0 0px 1000px #6fadf3 inset;
+}
+input:-o-autofill {
+  -o-text-fill-color: white;
+  -o-box-shadow: 0 0 0px 1000px #6fadf3 inset;
+}
+input:-khtml-autofill {
+  -khtml-text-fill-color: white;
+  -khtml-box-shadow: 0 0 0px 1000px #6fadf3 inset;
+}
+
+ input:focus:-webkit-autofill {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #6fadf3 inset;
+}
+input:focus:-moz-autofill {
+  -moz-text-fill-color: white;
+  -moz-box-shadow: 0 0 0px 1000px #6fadf3 inset;
+}
+input:focus:-o-autofill {
+  -o-text-fill-color: white;
+  -o-box-shadow: 0 0 0px 1000px #6fadf3 inset;
+}
+input:focus:-khtml-autofill {
+  -khtml-text-fill-color: white;
+  -khtml-box-shadow: 0 0 0px 1000px #6fadf3 inset;
+}
