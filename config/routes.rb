@@ -1,6 +1,8 @@
 
 Rails.application.routes.draw do
 
+
+
   devise_for :users
   # Define root URI
   devise_scope :user do
@@ -12,9 +14,15 @@ Rails.application.routes.draw do
   	end
   end
   	
-  # Define routes for pages
+  # Match routes for statuc pages
   get '/launchpad' => 'pages#launchpad'
-  get '/contacts'	=> 'pages#contacts'
+
+  # Resourceful routes for the contacts page
+  resources :contacts do
+    member do
+      get :delete
+    end  
+  end  
 
 end
 
