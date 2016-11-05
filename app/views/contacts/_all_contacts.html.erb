@@ -2,13 +2,17 @@
 <h2> Your Contacts </h2>
 <br>
 <table class="dtable display responsive no-wrap">
-  <col width="60%">
-  <col width="40%">	
+	<col width="70%">
+	<col width="10%">
+	<col width="10%">
+	<col width="10%">	
 <thead>	
 	<!-- Header -->
 	<tr class = "header">
 		<th> Name </th>
-		<th> Actions </th>
+		<th> </th>
+		<th> </th>
+		<th> </th>
 	</tr>
 </thead>
 	<!-- Body -->
@@ -22,11 +26,13 @@
 				<%= link_to "#x", class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-envelope "></span>
 				<% end %>
-
+			</td>
+			<td>
 				<%= link_to "#x", class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-facetime-video"></span>
 				<% end %>
-
+			</td>
+			<td>	
 				<%= link_to delete_contact_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-trash "></span>
 				<% end %>
