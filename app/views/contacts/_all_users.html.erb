@@ -1,0 +1,29 @@
+<br>
+<h2> Available Patients/Physicians </h2>
+<br>
+<table class="dtable display responsive no-wrap">
+  <col width="90%">
+  <col width="10%">	
+<thead>	
+	<!-- Header -->	
+	<tr class = "header">
+		<th> Name </th>
+		<th> </th>
+	</tr>
+</thead>
+	<!-- Body -->
+	<tbody>
+		<% @all_users.each do |user| %>
+		<tr>
+			<!-- Name -->
+			<td><%= "#{user.first_name} #{user.last_name}" %></td>
+			<!-- Buttons -->
+			<td class = "actions">
+				<%= link_to edit_contact_path(user.id), class: "btn btn-primary " do %>
+    				<span class="glyphicon glyphicon-plus "></span>
+				<% end %>
+			</td>	
+		</tr>
+		<%end%>
+	</tbody>	
+</table>

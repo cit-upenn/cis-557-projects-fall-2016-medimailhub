@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 
  gem 'bootstrap-datepicker-rails'
 
+gem 'jquery-datatables-rails', '~> 3.4.0'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'	
@@ -57,5 +59,13 @@ group :production do
 
 	gem 'rails_12factor'
 end	
+
+group :development, :test do
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'launchy'
+end
 
 #ruby "2.3.1"
