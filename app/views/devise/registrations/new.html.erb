@@ -57,13 +57,16 @@
   
   <br>
   <div class='row'>
-  <div class="col-xs-3"><%= radio_button_tag(:gender, :male) %><%= label_tag(:gender, "Male") %></div>
-  <div class="col-xs-6"><%= radio_button_tag(:gender, :female) %><%= label_tag(:gender, "Female") %></div>
+<!--   <div class="col-xs-3"><%= radio_button_tag(:gender, :male) %><%= label_tag(:gender, "Male") %></div>
+  <div class="col-xs-6"><%= radio_button_tag(:gender, :female) %><%= label_tag(:gender, "Female") %></div> -->
+
+  <div class="col-xs-3"><%= f.radio_button(:gender, :male) %><%= f.label(:gender, "Male") %></div>
+  <div class="col-xs-6"><%= f.radio_button(:gender, :female) %><%= f.label(:gender, "Female") %></div>
   </div>
 
   <div class='row'>
-  <div class="col-xs-3"><%= radio_button_tag(:role, :doctor) %><%= label_tag(:role, "Doctor") %></div>
-  <div class="col-xs-6"><%= radio_button_tag(:role, :patient) %><%= label_tag(:role, "Paient") %></div>
+  <div class="col-xs-3"><%= f.radio_button(:role, :doctor) %><%= f.label(:role, "Doctor") %></div>
+  <div class="col-xs-6"><%= f.radio_button(:role, :patient) %><%= f.label(:role, "Paient") %></div>
   </div>
   <div class="field">
     <!--<%= f.label :password %>-->

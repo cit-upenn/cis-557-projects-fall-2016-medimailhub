@@ -211,9 +211,17 @@ td.sorting_1 {
 @media screen and (max-width: 640px) {
   .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
   text-align: left !important;
+  padding-left: 5%;
 }}
 
 
 select {
   background-color: white !important;
 } 
+
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 0.5em;
+    border-style: solid;
+    border-width: thin;
+    border-color: lightgrey;
+}

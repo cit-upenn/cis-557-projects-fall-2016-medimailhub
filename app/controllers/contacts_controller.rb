@@ -28,6 +28,10 @@ class ContactsController < ApplicationController
  	user = User.find(params[:id])
  	contact = Contact.new(:contact_person => user.id , :contact_name => "#{user.first_name} #{user.last_name}")
  	current_user.contacts << contact
+
+ 	contact_pat = Contact.new(:contact_person => current_user.id , :contact_name => "#{current_user.first_name} #{current_user.last_name}")
+ 	user.contacts << contact_pat
+ 	
  	redirect_to(:action => "index")
   end	
 end
