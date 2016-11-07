@@ -1,3 +1,5 @@
+
+
 class ContactsController < ApplicationController
   def index
   	@contacts = User.find(current_user.id).contacts
@@ -34,4 +36,9 @@ class ContactsController < ApplicationController
  	
  	redirect_to(:action => "index")
   end	
+
+  def webcast
+    # render "contacts/webcasts"
+  end  
+
 end
