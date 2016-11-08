@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   # Match routes for statuc pages
   get '/launchpad' => 'pages#launchpad'
 
+  #Route for webcast
+  get '/webcast' => 'contacts#webcast'
+
   # Resourceful routes for the contacts page
   resources :contacts do
     member do
