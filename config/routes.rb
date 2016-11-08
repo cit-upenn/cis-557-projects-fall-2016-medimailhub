@@ -7,16 +7,20 @@ Rails.application.routes.draw do
   # Define root URI
   devise_scope :user do
   	authenticated :user do
-    	root :to => 'pages#launchpad', as: :authenticated_root
+      #Naming the root routes causes mailboxer to crash when email is sent. Do not uncomment till fixed
+    	root :to => 'pages#launchpad'#, as: :authenticated_root
   	end
   	unauthenticated :user do
-    	root :to => 'devise/registrations#new', as: :unauthenticated_root
+
+    	root :to => 'devise/registrations#new'#, as: :unauthenticated_root
   	end
   end
   	
-  # Match routes for statuc pages
+  # Match routes for static pages
   get '/launchpad' => 'pages#launchpad'
-
+  get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
+  get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
+  get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
   # Resourceful routes for the contacts page
   resources :contacts do
     member do
@@ -24,5 +28,12 @@ Rails.application.routes.draw do
     end  
   end  
 
+  resources :conversations do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+    end
+  end
 end
 

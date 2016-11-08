@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require chosen-jquery
 //= require turbolinks
 //= require bootstrap-datepicker
 //= require dataTables/jquery.dataTables

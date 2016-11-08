@@ -1,4 +1,10 @@
 source 'https://rubygems.org'
+#Enhancements to mailerbox
+gem 'chosen-rails'
+#To annotate 
+gem 'annotate'
+# mailboxer gem for private messages
+gem 'mailboxer'
 #Devise gem for authentication
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
