@@ -1,4 +1,7 @@
 Rails.application.configure do
+  # Constants
+  API_OPENTOK = {:key => "45714262", :secret => "57bba80a9e8efec04ae489580d5c9e7a6ba86ad8"}
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.action_mailer.default_url_options = { host: 'medimailhub.herokuapp.com' }
@@ -42,7 +45,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

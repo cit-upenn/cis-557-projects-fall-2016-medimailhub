@@ -1,0 +1,25 @@
+
+    
+    <script type="text/javascript">
+        var apiKey = '<%= API_OPENTOK[:key] %>';
+        var sessionId = '<%= @session_id %>';
+        // var token = "T1==cGFydG5lcl9pZD00NTcxNDI2MiZzaWc9MjllNDc2NmFhNGZjYWVkZWEwMzk3NzgxOWQzMjczZWQ3M2E4NzBhNTpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UY3hOREkyTW41LU1UUTNPRFUwTnpJMU56WTJPWDV4TlVwSVdHaHVOVm8yYm5Ka2FGcDZXWHBVTVV4bWFXbC1VSDQmY3JlYXRlX3RpbWU9MTQ3ODU0NzI4OCZub25jZT0wLjI0ODQ0NzM3MzE2MTA1Mjc=";
+        var token = '<%= @token %>';
+    </script>
+    <script src="/js/webcast.js"></script>
+
+    <!-- <h2>Hello, World!</h2> -->
+<br>
+    <div id="subscribers" style="height: 100vh; width: 100%;" ></div>
+<br>
+    <div id="publisher"></div>
+<script>
+var elementPosition = $('#publisher').offset();
+$(window).scroll(function(){
+        if($(window).scrollTop() > elementPosition.top){
+              $('#publisher').css('position','fixed').css('top','0');
+        } else {
+            $('#publisher').css('position','static');
+        }    
+});
+</script>

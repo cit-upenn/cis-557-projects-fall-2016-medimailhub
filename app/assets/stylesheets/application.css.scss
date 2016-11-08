@@ -226,3 +226,16 @@ select {
     border-width: thin;
     border-color: lightgrey;
 }
+
+.OT_subscriber {
+    width: 100% !important;
+    height: 100vh !important;
+    overflow: hidden;
+}
+
+.OT_publisher {
+    position:fixed !important;
+    bottom: 0vh !important;
+    width: 15vh !important;
+    height: 15vh !important;
+}

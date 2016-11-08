@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
-  # Resourceful routes for the contacts page
+
+  #Route for webcast
+  get '/webcast' => 'contacts#webcast'
+
+ # Resourceful routes for the contacts page
   resources :contacts do
     member do
       get :delete
