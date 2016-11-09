@@ -1,6 +1,8 @@
 
 
 class ContactsController < ApplicationController
+  require "opentok"
+
   def index
   	@contacts = User.find(current_user.id).contacts
   	
@@ -37,12 +39,23 @@ class ContactsController < ApplicationController
  	redirect_to(:action => "index")
   end	
 
+  def create_session
+    opentok = OpenTok::OpenTok.new(API_OPENTOK[:key], API_OPENTOK[:secret])
+    session_id = opentok.create_session.session_id
+    puts "==================================="
+    puts params[:id]
+    current_user.session_id = session_id
+    current_user.save
+    User.find(Contact.find(params[:id]).contact_person)
+    puts "==================================="
+
+  end  
+
   def webcast
-    require "opentok"
+    
     opentok = OpenTok::OpenTok.new(API_OPENTOK[:key], API_OPENTOK[:secret])
     @session_id = "1_MX40NTcxNDI2Mn5-MTQ3ODU0NzI1NzY2OX5xNUpIWGhuNVo2bnJkaFp6WXpUMUxmaWl-UH4"
     @token = opentok.generate_token(@session_id)
-    # render "contacts/webcasts"
   end  
 
 end

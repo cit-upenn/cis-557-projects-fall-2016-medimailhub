@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   	
   # Match routes for static pages
   get '/launchpad' => 'pages#launchpad'
+  get "/contacts/create_session/:id" => "contacts#create_session", as: :create_session
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
