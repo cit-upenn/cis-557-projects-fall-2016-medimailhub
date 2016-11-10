@@ -29,33 +29,41 @@ class ContactsController < ApplicationController
 
   # Being reused for add - to be changed later
   def edit
- 	user = User.find(params[:id])
- 	contact = Contact.new(:contact_person => user.id , :contact_name => "#{user.first_name} #{user.last_name}")
- 	current_user.contacts << contact
+ 	  user = User.find(params[:id])
+ 	  contact = Contact.new(:contact_person => user.id , :contact_name => "#{user.first_name} #{user.last_name}")
+ 	  current_user.contacts << contact
 
- 	contact_pat = Contact.new(:contact_person => current_user.id , :contact_name => "#{current_user.first_name} #{current_user.last_name}")
- 	user.contacts << contact_pat
+ 	  contact_pat = Contact.new(:contact_person => current_user.id , :contact_name => "#{current_user.first_name} #{current_user.last_name}")
+ 	  user.contacts << contact_pat
  	
- 	redirect_to(:action => "index")
+ 	  redirect_to(:action => "index")
   end	
 
   def create_session
+    # Create a new session if dialed via the contact page
     opentok = OpenTok::OpenTok.new(API_OPENTOK[:key], API_OPENTOK[:secret])
+    # Create a session id
     session_id = opentok.create_session.session_id
-    puts "==================================="
-    puts params[:id]
+    # Update session id to the current user database
     current_user.session_id = session_id
     current_user.save
-    User.find(Contact.find(params[:id]).contact_person)
-    puts "==================================="
-
+    contact = User.find(Contact.find(params[:id]).contact_person)
+    # Update session id to the contacts database
+    contact.session_id = session_id
+    contact.save
+    redirect_to(:action => "webcast")
   end  
 
   def webcast
     
     opentok = OpenTok::OpenTok.new(API_OPENTOK[:key], API_OPENTOK[:secret])
-    @session_id = "1_MX40NTcxNDI2Mn5-MTQ3ODU0NzI1NzY2OX5xNUpIWGhuNVo2bnJkaFp6WXpUMUxmaWl-UH4"
-    @token = opentok.generate_token(@session_id)
+    @session_id = current_user.session_id
+    if (@session_id.empty?)
+      redirect_to(:action => "index")   
+    else
+      @token = opentok.generate_token(@session_id)
+    end  
+    
   end  
 
 end

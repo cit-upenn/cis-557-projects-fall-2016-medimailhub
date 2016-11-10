@@ -30,30 +30,30 @@ user7.save
 user8.save
 user9.save
 
-contact1 = Contact.new(:contact_person => user1.id , :contact_name => "#{user1.first_name} #{user1.last_name}")
-contact2 = Contact.new(:contact_person => user2.id , :contact_name => "#{user2.first_name} #{user2.last_name}")
-contact3 = Contact.new(:contact_person => user3.id , :contact_name => "#{user3.first_name} #{user3.last_name}")
-contact4 = Contact.new(:contact_person => user4.id , :contact_name => "#{user4.first_name} #{user4.last_name}")
-contact5 = Contact.new(:contact_person => user5.id , :contact_name => "#{user5.first_name} #{user5.last_name}")
-contact6 = Contact.new(:contact_person => user6.id , :contact_name => "#{user6.first_name} #{user6.last_name}")
-contact7 = Contact.new(:contact_person => user7.id , :contact_name => "#{user7.first_name} #{user7.last_name}")
-contact8 = Contact.new(:contact_person => user8.id , :contact_name => "#{user8.first_name} #{user8.last_name}")
-contact9 = Contact.new(:contact_person => user9.id , :contact_name => "#{user9.first_name} #{user9.last_name}")
+# contact1 = Contact.new(:contact_person => user1.id , :contact_name => "#{user1.first_name} #{user1.last_name}")
+# contact2 = Contact.new(:contact_person => user2.id , :contact_name => "#{user2.first_name} #{user2.last_name}")
+# contact3 = Contact.new(:contact_person => user3.id , :contact_name => "#{user3.first_name} #{user3.last_name}")
+# contact4 = Contact.new(:contact_person => user4.id , :contact_name => "#{user4.first_name} #{user4.last_name}")
+# contact5 = Contact.new(:contact_person => user5.id , :contact_name => "#{user5.first_name} #{user5.last_name}")
+# contact6 = Contact.new(:contact_person => user6.id , :contact_name => "#{user6.first_name} #{user6.last_name}")
+# contact7 = Contact.new(:contact_person => user7.id , :contact_name => "#{user7.first_name} #{user7.last_name}")
+# contact8 = Contact.new(:contact_person => user8.id , :contact_name => "#{user8.first_name} #{user8.last_name}")
+# contact9 = Contact.new(:contact_person => user9.id , :contact_name => "#{user9.first_name} #{user9.last_name}")
 
-user1.contacts << contact2
-user1.contacts << contact3
-user1.contacts << contact4
-user1.contacts << contact5
-user1.contacts << contact6
-user1.contacts << contact7
-user1.contacts << contact8
-user1.contacts << contact9
+# user1.contacts << contact2
+# user1.contacts << contact3
+# user1.contacts << contact4
+# user1.contacts << contact5
+# user1.contacts << contact6
+# user1.contacts << contact7
+# user1.contacts << contact8
+# user1.contacts << contact9
 
-user2.contacts << contact1
-user3.contacts << contact1
-user4.contacts << contact1
-user5.contacts << contact1
-user6.contacts << contact1
-user7.contacts << contact1
-user8.contacts << contact1
-user9.contacts << contact1
+# user2.contacts << contact1
+# user3.contacts << contact1
+# user4.contacts << contact1
+# user5.contacts << contact1
+# user6.contacts << contact1
+# user7.contacts << contact1
+# user8.contacts << contact1
+# user9.contacts << contact1

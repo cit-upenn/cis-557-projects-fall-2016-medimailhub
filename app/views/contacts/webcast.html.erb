@@ -1,25 +1,50 @@
-
-    
-    <script type="text/javascript">
+<script type="text/javascript">
         var apiKey = '<%= API_OPENTOK[:key] %>';
         var sessionId = '<%= @session_id %>';
-        // var token = "T1==cGFydG5lcl9pZD00NTcxNDI2MiZzaWc9MjllNDc2NmFhNGZjYWVkZWEwMzk3NzgxOWQzMjczZWQ3M2E4NzBhNTpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UY3hOREkyTW41LU1UUTNPRFUwTnpJMU56WTJPWDV4TlVwSVdHaHVOVm8yYm5Ka2FGcDZXWHBVTVV4bWFXbC1VSDQmY3JlYXRlX3RpbWU9MTQ3ODU0NzI4OCZub25jZT0wLjI0ODQ0NzM3MzE2MTA1Mjc=";
         var token = '<%= @token %>';
-    </script>
-    <script src="/js/webcast.js"></script>
-
-    <!-- <h2>Hello, World!</h2> -->
-<br>
-    <div id="subscribers" style="height: 100vh; width: 100%;" ></div>
-<br>
-    <div id="publisher"></div>
-<script>
-var elementPosition = $('#publisher').offset();
-$(window).scroll(function(){
-        if($(window).scrollTop() > elementPosition.top){
-              $('#publisher').css('position','fixed').css('top','0');
-        } else {
-            $('#publisher').css('position','static');
-        }    
-});
 </script>
+
+<script src="/js/webcast.js"></script>
+    <br>
+    <div id="subscribers" style="height: 100vh; width: 100%;" ></div>
+    <br>
+    <div id="publisher"></div>
+    <div class="web-buttons row">
+        <div class="col-md-4 col-xs-2"></div>    
+        <div class="col-md-2 col-xs-3"><button id="mute_audio" type="button" class="btn btn-circle btn-lg white-button"><span class="glyphicon glyphicon-volume-up"></span></button></div>
+        <div class="col-md-2 col-xs-3"><button id="end_call" type="button" class="btn btn-danger btn-circle btn-lg "><span class="glyphicon glyphicon-earphone"></span></button></div>
+        <div class="col-md-2 col-xs-3"><button id="stop_video" type="button" class="btn btn-circle btn-lg white-button"><span class="glyphicon glyphicon-eye-open"></span></button></div>
+    </div>
+    <script>
+    $("#end_call").click(function() {
+        session.disconnect();
+        window.location.href="/launchpad"
+    });
+
+
+    $("#mute_audio").click(function() {
+
+        $("span", this).toggleClass("glyphicon-volume-off glyphicon-volume-up");
+        if($( "#mute_audio span" ).hasClass( "glyphicon-volume-up" )) {
+            publisher.publishAudio(true)
+        }
+        else {
+            publisher.publishAudio(false)   
+        }
+    });
+
+    $("#stop_video").click(function() {
+
+        $("span", this).toggleClass("glyphicon-eye-close glyphicon-eye-open");
+        if($( "#stop_video span" ).hasClass( "glyphicon-eye-open" )) {
+            publisher.publishVideo(true)
+        }
+        else {
+            publisher.publishVideo(false)   
+        }
+    });
+
+
+
+
+ </script>

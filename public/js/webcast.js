@@ -30,3 +30,4 @@ session.on({
 
 // Connect to the Session using the 'apiKey' of the application and a 'token' for permission
 session.connect(apiKey, token);
+

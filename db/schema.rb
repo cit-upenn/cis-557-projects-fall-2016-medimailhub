@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108194508) do
+ActiveRecord::Schema.define(version: 20161109195109) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "user_id"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20161108194508) do
     t.datetime "d_o_b"
     t.string   "gender",                 default: "male"
     t.string   "role",                   default: "patient"
-    t.string   "session_id"
+    t.string   "session_id",             default: ""
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
