@@ -84,7 +84,7 @@ Given(/^I'm in the user log in page$/) do
 end
 
 When(/^I fill the credentials and log in$/) do
-    fill_in 'login_email', :with => "username@example.com"
+  fill_in 'login_email', :with => "username@example.com"
   fill_in 'login_password', :with => "testtesttest"
   click_button "Login"
 end
@@ -96,7 +96,7 @@ end
 When(/^I fill the wrong username or password$/) do
   fill_in 'login_email', :with => "T@seas.upenn.edu"
   fill_in 'login_password', :with => "1234567"
-  click_button "Log in"
+  click_button "Login"
 end
 
 Then(/^I should not be able to log in$/) do

@@ -1,13 +1,10 @@
-# Given (/^I have set up the user database$/) do
+#Given (/^I have set up the user database$/) do
 # 	User.create(
 # 		Email: "Tom@seas.upenn.edu",
 # 		Password: "12345678",
 # 		Password_confirmation: "12345678")
 # end
 
-# Given(/^I'm in the user log in page$/) do
-#   visit(new_user_session_path)
-# end
 
 # When(/^I fill the credentials and log in$/) do
 #     fill_in 'Email', :with => "Tom@seas.upenn.edu"

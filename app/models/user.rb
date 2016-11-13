@@ -34,7 +34,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :role, :presence => true
-
+  #devise validates presence of password and email
   acts_as_messageable
 
   def mailboxer_name

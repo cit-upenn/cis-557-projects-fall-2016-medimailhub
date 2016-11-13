@@ -1,15 +1,15 @@
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
   <div class="form-group">
     <%= f.label :recipients %>
-    <%= f.select(:recipients, User.all.collect {|p| [ p.first_name+" "+p.last_name, p.id ] }, {}, { multiple: true , class: "js-example-basic-multiple form-control" })%>
+    <%= f.select(:recipients, User.all.collect {|p| [ p.first_name, p.id ] }, {}, { multiple: true , class: "js-example-basic-multiple form-control",id: "recipients",  :required => true })%>
   </div>
   <div class="form-group">
     <%= f.label :subject %>
-    <%= f.text_field :subject, placeholder: "Subject", class: "form-control" %>
+    <%= f.text_field :subject, placeholder: "Subject", class: "form-control",id:"subject",:required => true %>
   </div>
   <div class="form-group">
     <%= f.label :message %>
-    <%= f.text_area :body, class: 'form-control',placeholder: "Type your message here", rows: 4  %>
+    <%= f.text_area :body, class: 'form-control',placeholder: "Type your message here", id:"message",rows: 4,:required => true  %>
   </div>
 
   <%= f.submit "Send Message", class: "btn btn-success" %>
