@@ -26,26 +26,23 @@
 			  <div class="tab-pane active" id="1a">
           			<%= render '/contacts/all_contacts_physicians' %>
 				</div>
-				<div class="tab-pane" id="2a">
+				<div class="tab-pane active" id="2a">
           			<%= render '/contacts/all_contacts_patients' %>
 				</div>
-        		<div class="tab-pane" id="3a">
+        		<div class="tab-pane active" id="3a">
           			<%= render '/contacts/all_users_physicians' %>
 				</div>
-          		<div class="tab-pane" id="4a">
+          		<div class="tab-pane active" id="4a">
           			<%= render '/contacts/all_users_patients' %>
 				</div>
 			</div>
-  </div>
+</div>
 
-
-
-<!-- Responsive Datatable -->
 <script>
 $(document).ready(function() {
-	$('.dtable').dataTable({
+	var table = $('.dtable').dataTable({
   responsive: true,
-  "autoWidth": true
+  autoWidth: true
 });
 });
 </script>

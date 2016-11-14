@@ -1,7 +1,7 @@
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
   <div class="form-group">
     <%= f.label :recipients %>
-    <%= f.select(:recipients, User.all.collect {|p| [ p.first_name, p.id ] }, {}, { multiple: true , class: "js-example-basic-multiple form-control",id: "recipients",  :required => true })%>
+    <%= f.select(:recipients, User.all.collect {|p| [ p.first_name+" "+p.last_name, p.id ] }, {}, { multiple: true , class: "js-example-basic-multiple form-control",id: "recipients",  :required => true })%>
   </div>
   <div class="form-group">
     <%= f.label :subject %>

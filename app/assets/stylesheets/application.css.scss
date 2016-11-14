@@ -327,3 +327,12 @@ select {
 *:focus {
     outline: 0 !important;
 }
+
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
+    background-color: #1a82d4 !important;
+        border: 0px solid white;
+    border-radius: 0px;
+    top: 29%;
+    font-weight: bolder;
+  }
