@@ -54,6 +54,11 @@
     <!-- <%= f.date_select :d_o_b, options={:start_year => Date.today.year - 85, :end_year => Date.today.year } %> -->
     <%= f.text_field :d_o_b, :class => 'datepicker form-control', placeholder: 'Date of Birth' %>
   </div>
+
+  <div class="field">
+    <br />
+    <%= f.text_field :location, placeholder: 'City', class: 'form-control' %>
+  </div>
   
   <br>
   <div class='row'>
@@ -68,6 +73,12 @@
   <div class="col-xs-3"><%= f.radio_button(:role, :doctor) %><%= f.label(:role, "Doctor") %></div>
   <div class="col-xs-6"><%= f.radio_button(:role, :patient) %><%= f.label(:role, "Paient") %></div>
   </div>
+
+  <div class="field">
+    <br />
+    <%= f.text_field :specialization, placeholder: 'Specialization', class: 'form-control' %>
+  </div>
+
   <div class="field">
     <!--<%= f.label :password %>-->
     <!--<% if @minimum_password_length %>

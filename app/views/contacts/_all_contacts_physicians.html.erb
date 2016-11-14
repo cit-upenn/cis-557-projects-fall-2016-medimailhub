@@ -1,8 +1,9 @@
 <br>
-<h2> Your Contacts </h2>
 <br>
 <table class="dtable display responsive no-wrap">
-	<col width="70%">
+	<col width="30%">
+	<col width="20%">
+	<col width="20%">
 	<col width="10%">
 	<col width="10%">
 	<col width="10%">	
@@ -10,6 +11,8 @@
 	<!-- Header -->
 	<tr class = "header">
 		<th> Name </th>
+		<th> Location </th>
+		<th> Specialization </th>
 		<th> </th>
 		<th> </th>
 		<th> </th>
@@ -17,10 +20,12 @@
 </thead>
 	<!-- Body -->
 	<tbody>
-		<% @contacts.each do |contact| %>
+		<% @contacts_physicians.each do |contact| %>
 		<tr>
 			<!-- Name -->
-			<td><%= contact.contact_name %></td>
+			<td><%= "#{contact.first_name} #{contact.last_name}" %></td>
+			<td><%= "#{contact.location}" %></td>
+			<td><%= "#{contact.specialization}" %></td>
 			<!-- Buttons -->
 			<td class = "actions">
 				<%= link_to "#x", class: "btn btn-primary " do %>

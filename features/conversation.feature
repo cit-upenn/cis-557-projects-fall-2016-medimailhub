@@ -13,9 +13,10 @@ So that I can write and send mail
 
 	Scenario: Send mail 
 		Given I have logged in
+		And Another user exists
 		And I'm on the mailbox page
 		And I click the compose button
-		When I write a mail 
+		When I write a mail 		
 		And I click send
 		Then the mail should be sent successfully
 

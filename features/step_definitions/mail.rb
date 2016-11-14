@@ -1,5 +1,5 @@
 Given(/^I have logged in$/) do
-  User.create(email: "username@example.com", password: "testtesttest")
+  User.create(email: "username@example.com", password: "testtesttest", first_name: "User", last_name: "user")
   visit(new_user_registration_path)
   fill_in 'login_email', :with => "username@example.com"
   fill_in 'login_password', :with => "testtesttest"
@@ -14,6 +14,10 @@ end
 When (/^I click the inbox button$/) do
 	click_link "Inbox"
 end
+
+And (/^Another user exists/) do 
+	User.create(email: "user@example.com", password: "testtesttest", first_name: "User2", last_name: "user2")
+end	
 
 
 Then (/^I should be able to view my Inbox$/) do 
@@ -49,7 +53,6 @@ Then (/^I should be able to view the compose page$/) do
 end
 
 When (/^I write a mail$/) do
-	User.create(email: "user@example.com", password: "testtesttest", first_name: "User2", last_name: "user2")
     select "User2", :from => "recipients"
 	fill_in 'subject',:with => "User2 user2"
 	fill_in 'message',:with => "User2 user2"

@@ -26,7 +26,6 @@
 
 class User < ApplicationRecord
   
-  has_many :contacts
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -34,6 +33,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :role, :presence => true
+  validates :phone_one, :presence => true
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  validates :d_o_b, :presence => true
+
   #devise validates presence of password and email
   acts_as_messageable
 
@@ -44,5 +48,20 @@ class User < ApplicationRecord
   def mailboxer_email(object)
     self.email
   end
+
+  has_many :active_contacts, class_name:  "ContactRelationship", foreign_key: "contacter_id", dependent: :destroy
+  has_many :passive_contacts, class_name:  "ContactRelationship",  foreign_key: "contact_id",  dependent: :destroy
+
+  has_many :contacts, through: :active_contacts,  source: :contact
+  has_many :contacters, through: :passive_contacts, source: :contacter
+
+  def add_contact(other_user)
+    active_contacts.create(contact_id: other_user.id)
+  end
+
+  def remove_contact(other_user)
+    active_contacts.find_by(contact_id: other_user.id).destroy
+  end
+
 end
 

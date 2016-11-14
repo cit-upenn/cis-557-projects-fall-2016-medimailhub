@@ -4,12 +4,18 @@ class ContactsController < ApplicationController
   require "opentok"
 
   def index
-  	@contacts = User.find(current_user.id).contacts
-  	
+  	@contacts = current_user.contacts
+  	@contacts_physicians = current_user.contacts.where(role: 'doctor')
+    @contacts_patients = current_user.contacts.where(role: 'patient')
   	me = Array.new
   	me << current_user
   	# Remove current user and pass the remaining users
-  	@all_users = User.all - me 
+  	
+    @users_physicians = User.where(role: 'doctor') - me - @contacts
+    @users_patients = User.where(role: 'patient') - me - @contacts
+
+    @all_users = []
+
   end
 
   def show
@@ -18,8 +24,10 @@ class ContactsController < ApplicationController
 
   def delete
    	# Delete and Destroy a contact
-  	@contact = Contact.find(params[:id])
-  	@contact.destroy 
+    user = User.find(params[:id])
+    current_user.remove_contact(user)
+    user.remove_contact(current_user)
+    flash[:alert] = "#{user.first_name} #{user.last_name} has been removed from your contacts" 
   	redirect_to(:action => "index")	
   end
 
@@ -30,12 +38,9 @@ class ContactsController < ApplicationController
   # Being reused for add - to be changed later
   def edit
  	  user = User.find(params[:id])
- 	  contact = Contact.new(:contact_person => user.id , :contact_name => "#{user.first_name} #{user.last_name}")
- 	  current_user.contacts << contact
-
- 	  contact_pat = Contact.new(:contact_person => current_user.id , :contact_name => "#{current_user.first_name} #{current_user.last_name}")
- 	  user.contacts << contact_pat
- 	
+ 	  current_user.add_contact(user)
+    user.add_contact(current_user)
+    flash[:notice] = "Your contacts have been updated" 	
  	  redirect_to(:action => "index")
   end	
 
@@ -47,7 +52,7 @@ class ContactsController < ApplicationController
     # Update session id to the current user database
     current_user.session_id = session_id
     current_user.save
-    contact = User.find(Contact.find(params[:id]).contact_person)
+    contact = User.find(params[:id])
     # Update session id to the contacts database
     contact.session_id = session_id
     contact.save

@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109195109) do
+ActiveRecord::Schema.define(version: 20161113212927) do
 
-  create_table "contacts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "contact_person"
-    t.string   "contact_name"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["user_id"], name: "index_contacts_on_user_id"
+  create_table "contact_relationships", force: :cascade do |t|
+    t.integer  "contacter_id"
+    t.integer  "contact_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["contact_id"], name: "index_contact_relationships_on_contact_id"
+    t.index ["contacter_id", "contact_id"], name: "index_contact_relationships_on_contacter_id_and_contact_id", unique: true
+    t.index ["contacter_id"], name: "index_contact_relationships_on_contacter_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
@@ -95,6 +96,8 @@ ActiveRecord::Schema.define(version: 20161109195109) do
     t.string   "gender",                 default: "male"
     t.string   "role",                   default: "patient"
     t.string   "session_id",             default: ""
+    t.string   "specialization"
+    t.string   "location"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

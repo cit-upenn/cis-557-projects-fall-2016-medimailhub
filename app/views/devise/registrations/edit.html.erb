@@ -42,7 +42,13 @@
   <div class="field">
     <%= f.label :d_o_b, "Date of Birth" %><br />
     <!--<%= f.date_select :d_o_b, options={:start_year => Date.today.year - 85, :end_year => Date.today.year } %> -->
-    <%= f.text_field :d_o_b, :class => 'datepicker form-control', placeholder: 'Date of Birth' %>
+    <%= f.text_field :d_o_b, :class => 'datepicker form-control' %>
+  </div>
+
+  <br>
+  <div class="field">
+    <%= f.label :location, "City" %><br />
+    <%= f.text_field :location, class: 'form-control' %>
   </div>
 
   <br>
@@ -57,6 +63,12 @@
     <div class="col-md-1 col-xs-3"><%= f.radio_button(:role, :doctor) %><%= label_tag(:role, "Doctor") %></div>
     <div class="col-md-11 col-xs-6"><%= f.radio_button(:role, :patient) %><%= label_tag(:role, "Paient") %></div>
   </div> 
+
+  <br>
+  <div class="field">
+    <%= f.label :specialization, "Specialization" %><br />
+    <%= f.text_field :specialization, class: 'form-control' %>
+  </div>
 
   <br>
   <div class="field">

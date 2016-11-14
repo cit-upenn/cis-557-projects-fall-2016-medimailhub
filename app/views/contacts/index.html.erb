@@ -1,37 +1,51 @@
 
-<div class="row">
 
-<!-- List all users to be added	 -->
-<div class="col-sm-6 col-xs-12 ">
-	<% if current_user.role != "patient" %>	
-		<div class= "panel">
-			<%= render '/contacts/all_contacts_doctor' %>
-			<br>
-		</div>
-	<% else %>
-		<div class= "panel">
-			<%= render '/contacts/all_contacts_patient' %>
-			<br>
-		</div>	
-		<small style="color:grey;"> Please request your Physicians to add you to their contacts </small>
-	<% end %>	
-</div>
+<div class="container"><h1> </h1></div>
+<div id="exTab1">	
+<ul  class="nav nav-pills nav-justified panel">
+			<li class="active">
+        	<a  href="#1a" data-toggle="tab"><b>Physicians</b></a>
+			</li>
 
-<!-- List existing contacts -->
-<div class="col-sm-6 col-xs-12 panel">
-	<% if current_user.role != "patient" %>	
-	<%= render '/contacts/all_users' %>
-	<% end %>
-	<br>
-</div>
+			<% if current_user.role != "patient" %>
+				<li><a href="#2a" data-toggle="tab"><b>Patients</b></a>
+				</li>
+			<% end %>
 
-</div>	
+			<li><a href="#3a" data-toggle="tab"><b>All Physicians</b></a>
+			</li>
+  			
+  			<% if current_user.role != "patient" %>
+  				<li><a href="#4a" data-toggle="tab"><b>All Patients</b></a>
+				</li>
+			<% end %>
+				
+		</ul>
+
+			<div class="tab-content clearfix">
+			  <div class="tab-pane active" id="1a">
+          			<%= render '/contacts/all_contacts_physicians' %>
+				</div>
+				<div class="tab-pane" id="2a">
+          			<%= render '/contacts/all_contacts_patients' %>
+				</div>
+        		<div class="tab-pane" id="3a">
+          			<%= render '/contacts/all_users_physicians' %>
+				</div>
+          		<div class="tab-pane" id="4a">
+          			<%= render '/contacts/all_users_patients' %>
+				</div>
+			</div>
+  </div>
+
+
 
 <!-- Responsive Datatable -->
 <script>
 $(document).ready(function() {
 	$('.dtable').dataTable({
-  responsive: true
+  responsive: true,
+  "autoWidth": true
 });
 });
 </script>
