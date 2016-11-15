@@ -336,3 +336,18 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
     top: 29%;
     font-weight: bolder;
   }
+
+  .contacts-container {
+    padding-left: 0px;
+    margin-left: -10px;
+    padding-right: 0px;
+    margin-right: -10px;
+  }
+
+  .dataTables_length, .dataTables_filter {
+      padding-left: 0px !important;  
+  }
+
+  table.dataTable.nowrap th {
+    padding-left: 0px !important;
+}

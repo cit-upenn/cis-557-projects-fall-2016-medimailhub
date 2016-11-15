@@ -1,6 +1,5 @@
-
-
 class ContactsController < ApplicationController
+  before_action :authenticate_user!
   require "opentok"
 
   def index

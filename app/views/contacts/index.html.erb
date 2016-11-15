@@ -1,8 +1,8 @@
 
-
+<div class="container contacts-container">
 <div class="container"><h1> </h1></div>
 <div id="exTab1">	
-<ul  class="nav nav-pills nav-justified panel">
+	<ul  class="nav nav-pills nav-justified panel">
 			<li class="active">
         	<a  href="#1a" data-toggle="tab"><b>Physicians</b></a>
 			</li>
@@ -20,29 +20,54 @@
 				</li>
 			<% end %>
 				
-		</ul>
+	</ul>
 
 			<div class="tab-content clearfix">
 			  <div class="tab-pane active" id="1a">
           			<%= render '/contacts/all_contacts_physicians' %>
 				</div>
-				<div class="tab-pane active" id="2a">
+				<div class="tab-pane " id="2a">
           			<%= render '/contacts/all_contacts_patients' %>
 				</div>
-        		<div class="tab-pane active" id="3a">
+        		<div class="tab-pane " id="3a">
           			<%= render '/contacts/all_users_physicians' %>
 				</div>
-          		<div class="tab-pane active" id="4a">
+          		<div class="tab-pane " id="4a">
           			<%= render '/contacts/all_users_patients' %>
 				</div>
 			</div>
 </div>
-
+</span>
 <script>
+
 $(document).ready(function() {
-	var table = $('.dtable').dataTable({
-  responsive: true,
+
+	// $("#exTab1").tabs({
+	//     activate: function (event, ui) {        
+ //          $($.fn.dataTable.tables(true)).DataTable()
+ //            .columns.adjust()
+ //            .responsive.recalc();
+ //    	},
+	//    create: function (event, ui) {        
+ //          $($.fn.dataTable.tables(true)).DataTable()
+ //            .columns.adjust()
+ //            .responsive.recalc();
+ //    	}
+	// });   
+
+
+	$('.dtable').DataTable({
+  	responsive: true,
   autoWidth: true
 });
+
+   $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+      $($.fn.dataTable.tables(true)).DataTable()
+         .columns.adjust()
+         .responsive.recalc();
+   }); 	
 });
+
+
 </script>
+
