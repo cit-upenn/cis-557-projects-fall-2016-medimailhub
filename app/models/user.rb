@@ -36,7 +36,6 @@ class User < ApplicationRecord
   validates :phone_one, :presence => true
   validates :first_name, :presence => true
   validates :last_name, :presence => true
-  validates :d_o_b, :presence => true
 
   #devise validates presence of password and email
   acts_as_messageable
