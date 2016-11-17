@@ -15,6 +15,8 @@ class ContactsController < ApplicationController
 
     @all_users = []
 
+    render 'index'
+
   end
 
   def show
@@ -27,7 +29,7 @@ class ContactsController < ApplicationController
     current_user.remove_contact(user)
     user.remove_contact(current_user)
     flash[:alert] = "#{user.first_name} #{user.last_name} has been removed from your contacts" 
-  	redirect_to(:action => "index")	
+  	redirect_to(:action => "index", :frag => "2a")	
   end
 
   def destroy
