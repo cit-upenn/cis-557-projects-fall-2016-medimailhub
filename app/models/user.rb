@@ -54,6 +54,8 @@ class User < ApplicationRecord
   has_many :contacts, through: :active_contacts,  source: :contact
   has_many :contacters, through: :passive_contacts, source: :contacter
 
+  has_many :assets
+
   def add_contact(other_user)
     active_contacts.create(contact_id: other_user.id)
   end

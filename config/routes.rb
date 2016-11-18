@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :assets
   devise_for :users
   # Define root URI
   devise_scope :user do
@@ -25,6 +26,9 @@ Rails.application.routes.draw do
 
   #Route for webcast
   get '/webcast' => 'contacts#webcast'
+
+  #This route is for file downloads 
+  match "assets/get/:id" => "assets#get", :via => [:get], :as => "download"
 
  # Resourceful routes for the contacts page
   resources :contacts do
