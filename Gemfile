@@ -43,6 +43,9 @@ gem "opentok", "~> 2.3"
 #for uploading files 
 gem "paperclip", "~> 5.0.0"
 
+#For nested folders 
+gem "acts_as_tree"
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'	

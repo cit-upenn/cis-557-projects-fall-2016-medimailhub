@@ -13,7 +13,11 @@ class Asset < ApplicationRecord
 
   #Only presence validation not working, have to give a file type, why?
 
-  validates_attachment_content_type :uploaded_file, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :uploaded_file, content_type: [/\Aimage\/.*\z/, "application/pdf","application/vnd.ms-excel",     
+             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+             "application/msword", 
+             "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
+             "text/plain"]
   
 
   def file_name 

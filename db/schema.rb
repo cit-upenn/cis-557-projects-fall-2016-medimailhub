@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118011508) do
+ActiveRecord::Schema.define(version: 20161118112835) do
 
   create_table "assets", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20161118011508) do
     t.index ["contact_id"], name: "index_contact_relationships_on_contact_id"
     t.index ["contacter_id", "contact_id"], name: "index_contact_relationships_on_contacter_id_and_contact_id", unique: true
     t.index ["contacter_id"], name: "index_contact_relationships_on_contacter_id"
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_folders_on_parent_id"
+    t.index ["user_id"], name: "index_folders_on_user_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :folders
   resources :assets
   devise_for :users
   # Define root URI
