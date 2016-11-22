@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_customer, only: [:create_appointment]
   require "opentok"
 
   def index
@@ -70,4 +71,37 @@ class ContactsController < ApplicationController
     
   end  
 
+  def create_appointment
+    @contact = User.find(params[:id])
+    respond_to do |format|
+      user = User.find(params[:id])
+      if @contact.update(:phone_one => "1231")
+        format.json { head :no_content }
+        format.js
+      else
+        format.json { render json: @contact.errors.full_messages,
+                                   status: :unprocessable_entity }
+      end
+     
+    end
+    
+  end  
+
+# private 
+#   def set_customer
+#     @user = User.find(params[:id])
+#   end
+# end  
+ private 
+  def set_customer
+    
+  end
+  
+  def contact_params
+    params.require(:contact).permit(:first_name, :last_name)
+  end
+
 end
+
+
+

@@ -16,6 +16,7 @@
 		<th> Message </th>
 		<th> Call </th>
 		<th> Delete </th>
+		<th> Appt </th>
 	</tr>
 </thead>
 	<!-- Body -->
@@ -42,6 +43,10 @@
     				<span class="glyphicon glyphicon-trash "></span>
 				<% end %>
 			</td>	
+			<td>	
+				<%= link_to 'Apt', create_appointment_path(contact),:method => "post", remote: true, :class => 'btn btn-sm btn-info' %>
+    
+			</td>
 		</tr>
 		<%end%>
 	</tbody>	
