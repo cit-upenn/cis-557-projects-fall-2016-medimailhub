@@ -18,6 +18,8 @@
 //= require bootstrap-datepicker
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.responsive
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .
 
 $(document).ajaxError(function(event,xhr,options,exc) {

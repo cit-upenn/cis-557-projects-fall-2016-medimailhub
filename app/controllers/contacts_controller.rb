@@ -72,27 +72,26 @@ class ContactsController < ApplicationController
   end  
 
   def create_appointment
-    @contact = User.find(params[:id])
+    @appointment = Appointment.new
+    @receiver = User.find(params[:id])
     respond_to do |format|
-      user = User.find(params[:id])
-      if @contact.update(:phone_one => "1231")
+
+      if @appointment.create_appointment(params, current_user)
+        if !@appointment.new_record?
+          flash[:notice] = "Appointment scheduled with #{@receiver.first_name} #{@receiver.last_name} for #{params[:appointment][:datetime]}"
+          redirect_to(:action => "index")  
+        end  
+        
         format.json { head :no_content }
         format.js
       else
-        format.json { render json: @contact.errors.full_messages,
+        format.json { render json: @appointment.errors.full_messages,
                                    status: :unprocessable_entity }
       end
-     
     end
-    
   end  
 
-# private 
-#   def set_customer
-#     @user = User.find(params[:id])
-#   end
-# end  
- private 
+private 
   def set_customer
     
   end

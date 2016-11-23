@@ -15,6 +15,15 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login => "jacobva-facilitator_api1.seas.upenn.edu",
+      :password => "KDHKW2V664HYHR6W",
+      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AoyXKnr-.QktM5cNaugIWzr9Metp"
+    )
+  end  
   # Show full error reports.
   config.consider_all_requests_local = true
 

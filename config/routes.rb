@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
 
 
+  get 'appointments/index'
+
   devise_for :users
   # Define root URI
   devise_scope :user do
@@ -26,6 +28,9 @@ Rails.application.routes.draw do
 
   #Route for webcast
   get '/webcast' => 'contacts#webcast'
+
+  resources :appointments
+  post '/appointments/make_payment/:id' => "appointments#make_payment", as: :make_payment
 
  # Resourceful routes for the contacts page
   resources :contacts do

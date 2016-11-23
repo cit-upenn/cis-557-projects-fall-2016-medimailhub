@@ -20,6 +20,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 
 .dummy {
     margin-top: 100%;
@@ -349,7 +350,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
   }
 
   table.dataTable.nowrap th {
-    padding-left: 0px !important;
+    padding-left: 10px !important;
 }
 
 
@@ -362,3 +363,20 @@ outline: none;
 /*.modal-backdrop {
   z-index: -1;
 }*/
+
+
+input.currency {
+    text-align: right;
+    padding-right: 15px;
+}
+.input-group .form-control {
+    float: none;
+}
+.input-group .input-buttons {
+    position: relative;
+    z-index: 3;
+}
+
+#dollar {
+  padding: 6px 15px !important;
+}
