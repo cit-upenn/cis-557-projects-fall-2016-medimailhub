@@ -36,7 +36,6 @@ class Appointment < ApplicationRecord
         else
           return "Error processing the payment. #{response.message}"          
         end  
-    
       else
         return "Error: credit card is not valid. #{@credit_card.errors.full_messages.join('. ')}"
       end
