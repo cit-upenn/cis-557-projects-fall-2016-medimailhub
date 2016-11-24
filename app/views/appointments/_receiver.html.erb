@@ -26,13 +26,17 @@
 			<td align="right"><%= "#{appointment[:price]} #{appointment[:currency]}" %></td>
 
 			<% if !appointment[:paid]%>
+				<% if appointment[:type] == "R"%>
 				<!-- Buttons -->
 				<td class = "actions">
 					<%= link_to 'Pay now', make_payment_path(appointment),:method => "post", remote: true, :class => 'btn btn-sm btn-primary' %>
 					
 				</td>
+				<%else%>
+				<td>Payment pending</td>
+				<%end%>
 			<% else %>
-				<td>paid</td>	
+				<td>Paid</td>	
 			<% end %>	
 		</tr>
 		<%end%>

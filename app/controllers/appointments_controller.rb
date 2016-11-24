@@ -1,9 +1,9 @@
 class AppointmentsController < ApplicationController
   
   def index
-  	@received_appointments = current_user.received_appts
+  	received_appointments = current_user.received_appts
   	tmp_appointments = []
-  	@received_appointments.each do |appointment|
+  	received_appointments.each do |appointment|
   		tmp = Hash.new
   		user = User.find(appointment.initiator_id)
       tmp[:id] = appointment.id
@@ -15,11 +15,34 @@ class AppointmentsController < ApplicationController
   		tmp[:price] = appointment.price
   		tmp[:currency] = appointment.currency
   		tmp[:paid] = appointment.paid
+      tmp[:type] = "R"
   		tmp_appointments << tmp
   	end	
 
   	@appointments = tmp_appointments
-  	puts tmp_appointments
+
+    initiated_appointments = current_user.initiated_appts
+    tmp_appointments = []
+    initiated_appointments.each do |appointment|
+      tmp = Hash.new
+      user = User.find(appointment.receiver_id)
+      tmp[:id] = appointment.id
+      tmp[:appointment_id] = appointment.id
+      tmp[:ip_address] = request.remote_ip
+      tmp[:first_name] = user.first_name
+      tmp[:last_name] = user.last_name
+      tmp[:datetime] = appointment.datetime
+      tmp[:price] = appointment.price
+      tmp[:currency] = appointment.currency
+      tmp[:paid] = appointment.paid
+      tmp[:type] = "I"
+      tmp_appointments << tmp
+    end 
+  	@appointments = @appointments + tmp_appointments
+
+
+
+    puts tmp_appointments
   		
   end
 
