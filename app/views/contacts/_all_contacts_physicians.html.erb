@@ -16,7 +16,7 @@
 		<th> Message </th>
 		<th> Call </th>
 		<th> Delete </th>
-		<th> Appt </th>
+		<th> Appointment </th>
 	</tr>
 </thead>
 	<!-- Body -->
@@ -29,22 +29,25 @@
 			<td><%= "#{contact.specialization}" %></td>
 			<!-- Buttons -->
 			<td class = "actions">
-				<%= link_to "#x", class: "btn btn-primary " do %>
+				&nbsp;&nbsp;&nbsp;<%= link_to "#x", class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-envelope "></span>
 				<% end %>
 			</td>
 			<td>
-				<%= link_to create_session_path(contact), class: "btn btn-primary " do %>
+				&nbsp;&nbsp;&nbsp;<%= link_to create_session_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-facetime-video"></span>
 				<% end %>
 			</td>
 			<td>	
-				<%= link_to delete_contact_path(contact), class: "btn btn-primary " do %>
+				&nbsp;&nbsp;&nbsp;<%= link_to delete_contact_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-trash "></span>
 				<% end %>
 			</td>	
 			<td>	
-				<%= link_to 'Apt', create_appointment_path(contact),:method => "post", remote: true, :class => 'btn btn-sm btn-info' %>
+				<%= link_to  create_appointment_path(contact),:method => "post", remote: true, :class => 'btn btn-primary' do%>
+				<span class="glyphicon glyphicon-calendar "></span>
+
+				<% end %>
     
 			</td>
 		</tr>

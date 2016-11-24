@@ -49,7 +49,7 @@ class Appointment < ApplicationRecord
   def create_card(params)
 
     @credit_card = ActiveMerchant::Billing::CreditCard.new(
-    :brand               => "visa",
+    :brand               => CreditCardValidations::Detector.new(params[:card_number]).brand,
     :number             => params[:card_number],
     :verification_value => params[:card_verification],
     :month              => params[:card_expires_on].split("-")[0],

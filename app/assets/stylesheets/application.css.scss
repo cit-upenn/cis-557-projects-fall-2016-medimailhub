@@ -21,6 +21,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+.custom-blue {
+  color: #1a82d4;
+}
 
 .dummy {
     margin-top: 100%;
@@ -379,4 +386,13 @@ input.currency {
 
 #dollar {
   padding: 6px 15px !important;
+}
+
+#datecalendar{
+      background-color: transparent;
+    border-color: transparent;
+}
+
+#datecalendaricon {
+  top: 10px;
 }
