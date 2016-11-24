@@ -1,5 +1,5 @@
 Given(/^I have logged in$/) do
-  User.create(email: "username@example.com", password: "testtesttest", first_name: "User", last_name: "user")
+  User.create(email: "username@example.com", password: "testtesttest", first_name: "User", last_name: "user", phone_one: "111111111")
   visit(new_user_registration_path)
   fill_in 'login_email', :with => "username@example.com"
   fill_in 'login_password', :with => "testtesttest"
@@ -16,7 +16,7 @@ When (/^I click the inbox button$/) do
 end
 
 And (/^Another user exists/) do 
-	User.create(email: "user@example.com", password: "testtesttest", first_name: "User2", last_name: "user2")
+	User.create(email: "user@example.com", password: "testtesttest", first_name: "User2", last_name: "user2", phone_one: "111111111")
 end	
 
 

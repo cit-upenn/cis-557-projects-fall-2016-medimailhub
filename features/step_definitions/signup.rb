@@ -7,6 +7,9 @@ When(/^I add a new user$/) do
 	fill_in 'signup-email', :with => "username@example.com"
 	fill_in 'signup-password', :with => "password"
 	fill_in 'signup-password-confirm', :with => "password"
+  fill_in 'Primary Phone number', :with => "11111111"
+  fill_in 'First Name', :with => "First Name"
+  fill_in 'Last Name', :with => "Last Name"
 	click_button "Sign up"
 	
 end
@@ -20,6 +23,8 @@ end
 When(/^I add a new user without username$/) do
   fill_in 'signup-password', :with => "password"
   fill_in 'signup-password-confirm', :with => "password"
+  fill_in 'Primary Phone number', :with => "11111111"
+  fill_in 'Last Name', :with => "Last Name"
   click_button "Sign up"
 end
 
@@ -30,7 +35,7 @@ end
 # --------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------
 Given(/^I have set up the user database$/) do
-  User.create(email: "username@example.com", password: "testtesttest")
+  User.create(email: "username@example.com", password: "testtesttest", first_name: "User", last_name: "user", phone_one: "111111111")
 end
 
 Given(/^I'm in the user sign in page$/) do
@@ -41,6 +46,8 @@ When(/^I add a new user with same Email$/) do
   	fill_in 'signup-email', :with => "username@example.com"
 	fill_in 'signup-password', :with => "password"
 	fill_in 'signup-password-confirm', :with => "password"
+  fill_in 'Primary Phone number', :with => "11111111"
+  fill_in 'Last Name', :with => "Last Name"
 	click_button "Sign up"
 end
 
@@ -65,6 +72,7 @@ end
 When(/^I add a new user with short password$/) do
   fill_in 'signup-password', :with => "passw"
   fill_in 'signup-password-confirm', :with => "passw"
+  fill_in 'Primary Phone number', :with => "11111111"
   click_button "Sign up"
 end
 

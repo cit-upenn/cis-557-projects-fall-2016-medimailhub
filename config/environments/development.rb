@@ -1,4 +1,9 @@
 Rails.application.configure do
+
+  config.action_dispatch.default_headers = {
+    'X-Frame-Options' => 'ALLOWALL'
+  }
+  
  # Constants
   API_OPENTOK = {:key => "45714262", :secret => "57bba80a9e8efec04ae489580d5c9e7a6ba86ad8"}
   

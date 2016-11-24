@@ -3,20 +3,20 @@
 <div class="container"><h1> </h1></div>
 <div id="exTab1">	
 	<ul  class="nav nav-pills nav-justified panel">
-			<li class="active">
+			<li id = "b1a" class="active">
         	<a  href="#1a" data-toggle="tab"><b>Physicians</b></a>
 			</li>
 
 			<% if current_user.role != "patient" %>
-				<li><a href="#2a" data-toggle="tab"><b>Patients</b></a>
+				<li id = "b2a"><a href="#2a" data-toggle="tab"><b>Patients</b></a>
 				</li>
 			<% end %>
 
-			<li><a href="#3a" data-toggle="tab"><b>All Physicians</b></a>
+			<li id = "b3a"><a href="#3a" data-toggle="tab"><b>All Physicians</b></a>
 			</li>
   			
   			<% if current_user.role != "patient" %>
-  				<li><a href="#4a" data-toggle="tab"><b>All Patients</b></a>
+  				<li id = "b4a"><a href="#4a" data-toggle="tab"><b>All Patients</b></a>
 				</li>
 			<% end %>
 				
@@ -43,19 +43,25 @@
 
 $(document).ready(function() {
 	
+	frag = window.location.search.split('frag=')[1]
+	if (!frag == false) {
+		$('#1a').removeClass('active');
+  		$('#2a').removeClass('active');
+  		$('#3a').removeClass('active');
+  		$('#4a').removeClass('active');
 
-	// $("#exTab1").tabs({
-	//     activate: function (event, ui) {        
- //          $($.fn.dataTable.tables(true)).DataTable()
- //            .columns.adjust()
- //            .responsive.recalc();
- //    	},
-	//    create: function (event, ui) {        
- //          $($.fn.dataTable.tables(true)).DataTable()
- //            .columns.adjust()
- //            .responsive.recalc();
- //    	}
-	// });   
+
+  		$('#b1a').removeClass('active');
+  		$('#b2a').removeClass('active');
+  		$('#b3a').removeClass('active');
+  		$('#b4a').removeClass('active');
+
+  		$('#'+frag).addClass('active');
+  		$('#b'+frag).addClass('active');
+
+	}	
+
+ 
 
 
 	$('.dtable').DataTable({
