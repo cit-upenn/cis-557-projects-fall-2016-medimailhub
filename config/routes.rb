@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
-
+  get "/contacts/mail_session/:id" => "contacts#mail_session", as: :mail_session
+  get "/conversations/new_wrecp" => "conversations/new_wrecp", as: :conv_session
   #Route for webcast
   get '/webcast' => 'contacts#webcast'
 

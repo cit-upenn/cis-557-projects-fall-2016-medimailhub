@@ -23,17 +23,6 @@ ActiveRecord::Schema.define(version: 20161123045828) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "assets", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "uploaded_file_file_name"
-    t.string   "uploaded_file_content_type"
-    t.integer  "uploaded_file_file_size"
-    t.datetime "uploaded_file_updated_at"
-    t.index ["user_id"], name: "index_assets_on_user_id"
-  end
-
   create_table "contact_relationships", force: :cascade do |t|
     t.integer  "contacter_id"
     t.integer  "contact_id"
@@ -42,16 +31,6 @@ ActiveRecord::Schema.define(version: 20161123045828) do
     t.index ["contact_id"], name: "index_contact_relationships_on_contact_id"
     t.index ["contacter_id", "contact_id"], name: "index_contact_relationships_on_contacter_id_and_contact_id", unique: true
     t.index ["contacter_id"], name: "index_contact_relationships_on_contacter_id"
-  end
-
-  create_table "folders", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["parent_id"], name: "index_folders_on_parent_id"
-    t.index ["user_id"], name: "index_folders_on_user_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|

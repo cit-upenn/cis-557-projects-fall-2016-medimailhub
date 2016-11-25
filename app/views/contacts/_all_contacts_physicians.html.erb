@@ -29,7 +29,7 @@
 			<td><%= "#{contact.specialization}" %></td>
 			<!-- Buttons -->
 			<td class = "actions">
-				&nbsp;&nbsp;&nbsp;<%= link_to "#x", class: "btn btn-primary " do %>
+				&nbsp;&nbsp;&nbsp;<%= link_to link_to mail_session_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-envelope "></span>
 				<% end %>
 			</td>
