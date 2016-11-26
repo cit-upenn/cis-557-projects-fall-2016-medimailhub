@@ -33,7 +33,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :role, :presence => true
-  validates :phone_one, :presence => true
+  #validates :phone_one, :presence => true
   validates :first_name, :presence => true
   validates :last_name, :presence => true
 
