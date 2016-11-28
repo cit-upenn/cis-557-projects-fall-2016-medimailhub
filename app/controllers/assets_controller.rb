@@ -23,9 +23,17 @@ end
   end
 
   # GET /assets/new
+  # def new
+  #   @asset = current_user.assets.new
+  # end
+
   def new
-    @asset = current_user.assets.new
-  end
+  @asset = current_user.assets.build     
+  if params[:folder_id] #if we want to upload a file inside another folder 
+   @current_folder = current_user.folders.find(params[:folder_id]) 
+   @asset.folder_id = @current_folder.id 
+  end    
+end
 
   # GET /assets/1/edit
   def edit
@@ -46,6 +54,26 @@ end
       end
     end
   end
+
+
+def create 
+  
+  @asset = current_user.assets.build(asset_params) 
+  if @asset.save 
+   flash[:notice] = "Successfully uploaded the file."
+  
+   if @asset.folder #checking if we have a parent folder for this file 
+     redirect_to browse_path(@asset.folder)  #then we redirect to the parent folder 
+   else
+     redirect_to '/assets' 
+   end      
+  else
+   render 'new'
+  end
+end
+
+
+
 
   # PATCH/PUT /assets/1
   # PATCH/PUT /assets/1.json
@@ -112,6 +140,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_params
-      params.require(:asset).permit(:user_id, :uploaded_file, :folder_id)
+      params.require(:asset).permit(:user_id, :uploaded_file, :folder_id, :parent_id)
     end
 end
