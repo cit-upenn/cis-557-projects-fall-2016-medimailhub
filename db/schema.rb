@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20161118112835) do
     t.string   "uploaded_file_content_type"
     t.integer  "uploaded_file_file_size"
     t.datetime "uploaded_file_updated_at"
+    t.index ["user_id"], name: "index_assets_on_user_id"
   end
 
   create_table "contact_relationships", force: :cascade do |t|

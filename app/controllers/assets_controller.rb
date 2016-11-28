@@ -4,9 +4,17 @@ class AssetsController < ApplicationController
 
   # GET /assets
   # GET /assets.json
-  def index
-    @assets = current_user.assets 
-  end
+ 
+
+  def index 
+    
+      #load current_user's folders 
+      @folders = current_user.folders.order("name desc")   
+    
+      #load current_user's files(assets) 
+      @assets = current_user.assets.order("uploaded_file_file_name desc")       
+    
+end
 
   # GET /assets/1
   # GET /assets/1.json
