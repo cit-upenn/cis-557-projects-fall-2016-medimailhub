@@ -28,6 +28,15 @@ Rails.application.configure do
     'Cache-Control' => 'public, max-age=3600'
   }
 
+    config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login => "jacobva-facilitator_api1.seas.upenn.edu",
+      :password => "KDHKW2V664HYHR6W",
+      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AoyXKnr-.QktM5cNaugIWzr9Metp"
+    )
+  end 
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

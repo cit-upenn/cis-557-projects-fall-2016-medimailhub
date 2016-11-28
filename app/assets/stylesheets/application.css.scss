@@ -20,6 +20,14 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+.custom-blue {
+  color: #1a82d4;
+}
 
 .dummy {
     margin-top: 100%;
@@ -385,4 +393,42 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
 .asset_details .delete a:hover{ 
     color:#BF0B12; 
     border:1px solid #FF8F93; 
+    padding-left: 10px !important;
+}
+
+
+#dialog {
+top:10%;
+/*right:50%;*/
+outline: none;
+}
+
+/*.modal-backdrop {
+  z-index: -1;
+}*/
+
+
+input.currency {
+    text-align: right;
+    padding-right: 15px;
+}
+.input-group .form-control {
+    float: none;
+}
+.input-group .input-buttons {
+    position: relative;
+    z-index: 3;
+}
+
+#dollar {
+  padding: 6px 15px !important;
+}
+
+#datecalendar{
+      background-color: transparent;
+    border-color: transparent;
+}
+
+#datecalendaricon {
+  top: 10px;
 }
