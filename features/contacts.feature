@@ -34,7 +34,7 @@ So that I can message and call them
 
 	Scenario: Message a contact
 		Given I have logged in
-		And another user exists
+		And Another user exists
 		And I'm on the contacts page
 		And I click on all Physicians
 		And I add the user
