@@ -1,12 +1,11 @@
 <% @receipts.each do |receipt| %>
     <% message = receipt.message %>
-    <div class="media">
-      <div class="media-left">
-        <!-- user avators can go here -->
-        <a href="#">
-          <img class="media-object" src="http://placehold.it/64x64" alt="...">
-        </a>
-      </div>
+    <div class="media panel-body" <% if (User.find(conversation.originator.id).role=="doctor") %> 
+                    style= "background:  #99ccff;" 
+                  <% else %>
+                    style= "background: #99ff66;" 
+                  <%end %>>
+
       <div class="media-body">
         <h4 class="media-heading">
           <%= message.sender.first_name+" "+message.sender.last_name %> <br>
