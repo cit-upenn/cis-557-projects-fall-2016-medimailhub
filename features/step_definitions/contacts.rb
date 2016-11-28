@@ -26,10 +26,16 @@ When(/^I click the make a call button$/) do
   find(:xpath, "//tr[td[contains(.,'User2')]]/td/a", :text => 'call').click
 end
 
+When(/^I click the message button$/) do
+  find(:xpath, "//tr[td[contains(.,'User2')]]/td/a", :text => 'message').click
+end
+		
 Then(/^A web chat should be initiated$/) do
   assert page.find("#publisher")
 end
-
+Then(/^the compose page should open$/) do
+  assert page.has_content?("Compose")
+end
 Then(/^End call$/) do
   page.find("#end_call").click
 end

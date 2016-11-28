@@ -8,7 +8,7 @@ Given(/^I have logged in$/) do
 end
 
 Given(/^I'm on the mailbox page$/) do
-	click_link "Physician Messages"
+	click_link "Messages"
 end
 
 When (/^I click the inbox button$/) do
