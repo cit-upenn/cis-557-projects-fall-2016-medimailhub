@@ -6,14 +6,15 @@ class AssetsController < ApplicationController
   # GET /assets.json
  
 
-  def index 
-    
-      #load current_user's folders 
-      @folders = current_user.folders.order("name desc")   
-    
-      #load current_user's files(assets) 
-      @assets = current_user.assets.order("uploaded_file_file_name desc")       
-    
+
+def index 
+  if user_signed_in? 
+     #show only root folders (which have no parent folders) 
+     @folders = current_user.folders.roots  
+       
+     #show only root files which has no "folder_id" 
+     @assets = current_user.assets.where("folder_id is NULL").order("uploaded_file_file_name desc")       
+  end
 end
 
   # GET /assets/1
@@ -81,6 +82,28 @@ end
       end
   end
 
+  #this action is for viewing folders 
+def browse 
+    #get the folders owned/created by the current_user 
+    @current_folder = current_user.folders.find(params[:folder_id])   
+  
+    if @current_folder
+    
+      #getting the folders which are inside this @current_folder 
+      @folders = @current_folder.children 
+  
+      #We need to fix this to show files under a specific folder if we are viewing that folder 
+     # @assets = current_user.assets.order("uploaded_file_file_name desc") 
+       #show only files under this current folder 
+      @assets = @current_folder.assets.order("uploaded_file_file_name desc")
+  
+      render "index"
+    else
+      flash[:error] = "Don't be cheeky! Mind your own folders!"
+      redirect_to '/assets' 
+    end
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_asset
@@ -89,6 +112,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_params
-      params.require(:asset).permit(:user_id, :uploaded_file)
+      params.require(:asset).permit(:user_id, :uploaded_file, :folder_id)
     end
 end

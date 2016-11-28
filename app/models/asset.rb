@@ -1,5 +1,6 @@
 class Asset < ApplicationRecord
 	belongs_to :user
+  belongs_to :folder
 
 #set up "uploaded_file" field as attached_file (using Paperclip) 
   

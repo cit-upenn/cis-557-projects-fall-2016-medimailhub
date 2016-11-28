@@ -28,8 +28,15 @@ Rails.application.routes.draw do
   #Route for webcast
   get '/webcast' => 'contacts#webcast'
 
+
+  get '/assets' => 'assets#index'
   #This route is for file downloads 
   match "assets/get/:id" => "assets#get", :via => [:get], :as => "download"
+
+  match "browse/:folder_id" => "assets#browse",  :via => [:get], :as => "browse"
+ 
+#creating folders insiide another folder 
+  match "browse/:folder_id/new_folder" => "folders#new", :via => [:get], :as => "new_sub_folder"
 
  # Resourceful routes for the contacts page
   resources :contacts do

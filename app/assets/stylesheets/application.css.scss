@@ -351,3 +351,12 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
   table.dataTable.nowrap th {
     padding-left: 0px !important;
 }
+
+.breadcrumbs { 
+   margin:10px 0; 
+   font-weight:bold; 
+} 
+.breadcrumbs a { 
+   color:#1D96EF; 
+   text-decoration:none; 
+}
