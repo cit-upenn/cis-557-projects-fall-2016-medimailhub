@@ -40,7 +40,8 @@ Rails.application.routes.draw do
 
 #for uploading files to folders 
   match "browse/:folder_id/new_file" => "assets#new", :via => [:get], :as => "new_sub_file"
-
+#for renaming a folder 
+match "browse/:folder_id/rename" => "folders#edit", :via => [:get], :as => "rename_folder"
  # Resourceful routes for the contacts page
   resources :contacts do
     member do

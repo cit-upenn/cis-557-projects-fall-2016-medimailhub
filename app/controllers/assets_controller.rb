@@ -28,11 +28,12 @@ end
   # end
 
   def new
-  @asset = current_user.assets.build     
+  @asset = current_user.assets.new     
   if params[:folder_id] #if we want to upload a file inside another folder 
    @current_folder = current_user.folders.find(params[:folder_id]) 
    @asset.folder_id = @current_folder.id 
-  end    
+
+end
 end
 
   # GET /assets/1/edit
@@ -41,36 +42,36 @@ end
 
   # POST /assets
   # POST /assets.json
-  def create
-    @asset = current_user.assets.new(asset_params)
+  #  def create
+  #    @asset = current_user.assets.new(asset_params)
 
-    respond_to do |format|
-      if @asset.save
-        format.html { redirect_to @asset, notice: 'Asset was successfully created.' }
-        format.json { render :show, status: :created, location: @asset }
-      else
-        format.html { render :new }
-        format.json { render json: @asset.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #    respond_to do |format|
+  #      if @asset.save
+  #        format.html { redirect_to @asset, notice: 'Asset was successfully created.' }
+  #        format.json { render :show, status: :created, location: @asset }
+  #      else
+  #        format.html { render :new }
+  #        format.json { render json: @asset.errors, status: :unprocessable_entity }
+  #      end
+  #    end
+  # end
 
 
-def create 
+ def create 
   
-  @asset = current_user.assets.build(asset_params) 
-  if @asset.save 
-   flash[:notice] = "Successfully uploaded the file."
+   @asset = current_user.assets.new(asset_params) 
+   if @asset.save 
+    flash[:notice] = "Successfully uploaded the file."
   
-   if @asset.folder #checking if we have a parent folder for this file 
-     redirect_to browse_path(@asset.folder)  #then we redirect to the parent folder 
+    if @asset.folder #checking if we have a parent folder for this file 
+      redirect_to browse_path(@asset.folder)  #then we redirect to the parent folder 
+    else
+      redirect_to '/assets' 
+    end      
    else
-     redirect_to '/assets' 
-   end      
-  else
-   render 'new'
-  end
-end
+    render 'new'
+   end
+ end
 
 
 
@@ -91,13 +92,31 @@ end
 
   # DELETE /assets/1
   # DELETE /assets/1.json
-  def destroy
-    @asset.destroy
-    respond_to do |format|
-      format.html { redirect_to assets_url, notice: 'Asset was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  # def destroy
+  #   @asset.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to assets_url, notice: 'Asset was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
+
+
+def destroy 
+  @asset = current_user.assets.find(params[:id]) 
+  @parent_folder = @asset.folder #grabbing the parent folder before deleting the record 
+  @asset.destroy 
+  flash[:notice] = "Successfully deleted the file."
+  
+  #redirect to a relevant path depending on the parent folder 
+  if @parent_folder
+   redirect_to browse_path(@parent_folder) 
+  else
+   redirect_to '/assets' 
   end
+end
+
+
+
 
   #This action will let the users download the files (after a simple authorization check) 
   def get 

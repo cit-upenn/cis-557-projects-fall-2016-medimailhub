@@ -1,6 +1,6 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!  #authenticate for users before any methods is called
-  before_action :set_folder, only: [:show, :edit, :update, :destroy]
+  before_action :set_folder, only: [:show, :update, :destroy]
 
   # GET /folders
   # GET /folders.json
@@ -29,8 +29,12 @@ def new
 end
 
   # GET /folders/1/edit
-  def edit
-  end
+  
+
+  def edit 
+    @folder = current_user.folders.find(params[:folder_id]) 
+    @current_folder = @folder.parent    #this is just for breadcrumbs 
+end
 
   # POST /folders
   # POST /folders.json
@@ -83,13 +87,24 @@ end
 
   # DELETE /folders/1
   # DELETE /folders/1.json
-  def destroy
-    @folder.destroy
-    respond_to do |format|
-      format.html { redirect_to folders_url, notice: 'Folder was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  
+  def destroy 
+   @folder = current_user.folders.find(params[:id]) 
+   @parent_folder = @folder.parent #grabbing the parent folder 
+  
+   #this will destroy the folder along with all the contents inside 
+   #sub folders will also be deleted too as well as all files inside 
+   @folder.destroy 
+   flash[:notice] = "Successfully deleted the folder and all the contents inside."
+  
+   #redirect to a relevant path depending on the parent folder 
+   if @parent_folder
+    redirect_to browse_path(@parent_folder) 
+   else
+    redirect_to '/assets'       
+   end
+end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
