@@ -35,6 +35,7 @@ Then(/^End call$/) do
 end
 
 When(/^I can schedule an appointment$/) do
+# As cucumber does not support JS Pop Ups backend unit tests were performed
 	@apt = Appointment.new
 	@parameters = Hash.new
 	@appointment = Hash.new
@@ -46,6 +47,7 @@ When(/^I can schedule an appointment$/) do
 end	
 
 Then(/^I should be able to make a paymet as the other user$/) do
+# As cucumber does not support JS Pop Ups backend unit tests were performed
 	@apt = Appointment.find(1)
 	@pays = Hash.new
 	@pays = { :card_number => "4929642537248212", :card_verification => "123", :card_expires_on => "11-2021", :first_name => "Jacob", :last_name => "Varghese"}

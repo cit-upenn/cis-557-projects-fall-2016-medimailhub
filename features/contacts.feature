@@ -31,20 +31,3 @@ So that I can message and call them
 		When I click the make a call button
 		Then A web chat should be initiated	
 		Then End call	
-
-	Scenario: Create an appointment
-		Given I have logged in
-		And Another user exists
-		And I'm on the contacts page
-		And I click on all Physicians
-		When I add the user
-		Then I can schedule an appointment	
-
-	Scenario: Make a payment
-		Given I have logged in
-		And Another user exists
-		And I'm on the contacts page
-		And I click on all Physicians
-		When I add the user
-		And I can schedule an appointment
-		Then I should be able to make a paymet as the other user 			

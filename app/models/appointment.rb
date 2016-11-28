@@ -9,13 +9,11 @@ class Appointment < ApplicationRecord
 
   has_one :payment
 
-  def create_appointment(parameters, initiator)
-  	puts parameters.inspect	
+  def create_appointment(parameters, initiator)	
     if (parameters[:appointment])
       self.update(:initiator_id => initiator.id, :receiver_id => parameters[:id], :price => parameters[:appointment][:price], :currency => "USD", :datetime => DateTime.parse(parameters[:appointment][:datetime]))
     end	
 
-    puts self.inspect
 
     return true
   end	
@@ -32,7 +30,6 @@ class Appointment < ApplicationRecord
         if (response.success?)
           payment.save
           attributes[:paid] = true
-          puts "===-----"
           self.update_attributes(attributes)
           return "true"                  
         else
