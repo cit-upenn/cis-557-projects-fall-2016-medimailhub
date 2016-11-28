@@ -32,9 +32,13 @@ class ApplicationController < ActionController::Base
   	devise_parameter_sanitizer.permit(:sign_in) do |user_params|
     	user_params.permit( :email, :password, :remember_me)
   	end
-  	devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-    	user_params.permit( :email, :password, :password_confirmation, :first_name, :last_name, :phone_one, :phone_two, :d_o_b,:gender, :role,:remember_me)
-  	end
+  	#devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+    #	user_params.permit( :email, :password, :password_confirmation, :first_name, :last_name, :phone_one, :phone_two, :d_o_b,:gender, :role,:remember_me)
+  	#end
+    devise_parameter_sanitizer.permit(:account_update) do |user_params|
+      user_params.permit(:current_password,:password,:password_confirmation,:specialization,:email,:first_name, :last_name, :phone_one, :phone_two, :d_o_b,:gender, :role)
+    end
+
   end
   
 end

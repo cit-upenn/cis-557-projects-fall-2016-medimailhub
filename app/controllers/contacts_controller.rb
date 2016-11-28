@@ -61,6 +61,12 @@ class ContactsController < ApplicationController
     redirect_to(:action => "webcast")
   end  
 
+  def mail_session
+
+    @recp=User.find(params[:id])
+    redirect_to conv_session_path(:recp => @recp)
+  end
+
   def webcast
     
     opentok = OpenTok::OpenTok.new(API_OPENTOK[:key], API_OPENTOK[:secret])

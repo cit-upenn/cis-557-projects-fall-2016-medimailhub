@@ -2,8 +2,12 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def new
+
   end
 
+  def new_wrecp
+
+  end 
   def create
     recipients = User.where(id: conversation_params[:recipients])
     #Need to validate null subj and messages
