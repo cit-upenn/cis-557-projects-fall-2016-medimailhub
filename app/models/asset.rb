@@ -1,6 +1,6 @@
 class Asset < ApplicationRecord
 	belongs_to :user
-  belongs_to :folder
+  # belongs_to :folder
 
 #set up "uploaded_file" field as attached_file (using Paperclip) 
   
@@ -28,6 +28,12 @@ class Asset < ApplicationRecord
   def file_size 
     uploaded_file_file_size 
   end
+
+  def folder
+    if self.folder_id
+    return Folder.find(self.folder_id)
+    end
+  end  
 
 end
 

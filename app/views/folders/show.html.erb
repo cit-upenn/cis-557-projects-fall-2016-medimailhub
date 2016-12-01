@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 <p>
   <strong>Name:</strong>
@@ -16,4 +16,8 @@
 </p> -->
 <!-- 
 <%= link_to 'Edit', edit_folder_path(@folder) %> | -->
-<%= link_to 'Back', folders_path %>
+<% if @folder.parent_id %>
+	<%= link_to 'Back', browse_path(@folder.parent_id) %>
+<% else %>
+		<%= link_to 'Back', '/assets' %>
+<% end %>

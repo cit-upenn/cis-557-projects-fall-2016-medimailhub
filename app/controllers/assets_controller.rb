@@ -33,7 +33,7 @@ end
    @current_folder = current_user.folders.find(params[:folder_id]) 
    @asset.folder_id = @current_folder.id 
 
-end
+  end
 end
 
   # GET /assets/1/edit
@@ -58,17 +58,23 @@ end
 
 
  def create 
-  
-   @asset = current_user.assets.new(asset_params) 
+   puts asset_params.inspect
+
+   @asset = current_user.assets.new(asset_params)
+
    if @asset.save 
     flash[:notice] = "Successfully uploaded the file."
   
     if @asset.folder #checking if we have a parent folder for this file 
+      # redirect_to '/assets'
       redirect_to browse_path(@asset.folder)  #then we redirect to the parent folder 
     else
       redirect_to '/assets' 
     end      
    else
+    puts "+-=-=-"
+    
+    puts @asset.inspect
     render 'new'
    end
  end
