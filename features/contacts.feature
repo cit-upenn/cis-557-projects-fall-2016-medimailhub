@@ -31,3 +31,12 @@ So that I can message and call them
 		When I click the make a call button
 		Then A web chat should be initiated	
 		Then End call	
+
+	Scenario: Message a contact
+		Given I have logged in
+		And Another user exists
+		And I'm on the contacts page
+		And I click on all Physicians
+		And I add the user
+		When I click the message button
+		Then the compose page should open

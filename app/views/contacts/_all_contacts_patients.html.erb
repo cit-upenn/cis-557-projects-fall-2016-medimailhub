@@ -16,6 +16,7 @@
 		<th> Message </th>
 		<th> Call </th>
 		<th> Delete </th>
+		<th> Appointment </th>
 	</tr>
 </thead>
 	<!-- Body -->
@@ -28,22 +29,31 @@
 			<td><%= "#{contact.d_o_b}" %></td>
 			<!-- Buttons -->
 			<td class = "actions">
-				<%= link_to "#x", class: "btn btn-primary " do %>
-    				<span class="glyphicon glyphicon-envelope "></span>
+				&nbsp;&nbsp;&nbsp;<%= link_to mail_session_path(contact), class: "btn btn-primary " do %>
+    				<span class="glyphicon glyphicon-envelope "></span><span style="font-size: 0;">message</span>
 				<% end %>
 			</td>
 			<td>
-				<%= link_to create_session_path(contact), class: "btn btn-primary " do %>
+				&nbsp;&nbsp;&nbsp;<%= link_to create_session_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-facetime-video"></span><span style="font-size: 0;">call</span>
 				<% end %>
 			</td>
 			<td>	
-				<%= link_to delete_contact_path(contact), class: "btn btn-primary " do %>
+				&nbsp;&nbsp;&nbsp;<%= link_to delete_contact_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-trash "></span><span style="font-size: 0;">delete</span>
 				<% end %>
-			</td>	
+			</td>
+
+			<td>	
+				<%= link_to  create_appointment_path(contact),:method => "post", remote: true, :class => 'btn btn-primary' do%>
+				<span class="glyphicon glyphicon-calendar "><span style="font-size: 0;">appointment</span></span>
+
+				<% end %>
+    
+			</td>
+
 		</tr>
 		<%end%>
 	</tbody>	
 </table>
-
+&nbsp;&nbsp;&nbsp;

@@ -35,7 +35,10 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
- gem 'bootstrap-datepicker-rails'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
+
+gem 'bootstrap-datepicker-rails'
 
 gem 'jquery-datatables-rails', '~> 3.4.0'
 gem "opentok", "~> 2.3"
@@ -45,6 +48,12 @@ gem "paperclip", "~> 5.0.0"
 
 #For nested folders 
 gem "acts_as_tree"
+
+gem 'activemerchant'
+
+gem 'credit_card_validations'
+
+gem 'font-awesome-sass'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

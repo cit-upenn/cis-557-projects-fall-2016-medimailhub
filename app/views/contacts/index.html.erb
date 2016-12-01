@@ -36,6 +36,7 @@
           			<%= render '/contacts/all_users_patients' %>
 				</div>
 			</div>
+			<%= render 'dialog' %>
 </div>
 </span>
 <script>
@@ -60,20 +61,7 @@ $(document).ready(function() {
 
 	}	
 
-  
-
-	// $("#exTab1").tabs({
-	//     activate: function (event, ui) {        
- //          $($.fn.dataTable.tables(true)).DataTable()
- //            .columns.adjust()
- //            .responsive.recalc();
- //    	},
-	//    create: function (event, ui) {        
- //          $($.fn.dataTable.tables(true)).DataTable()
- //            .columns.adjust()
- //            .responsive.recalc();
- //    	}
-	// });   
+ 
 
 
 	$('.dtable').DataTable({

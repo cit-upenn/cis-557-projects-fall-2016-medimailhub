@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_customer, only: [:create_appointment]
   require "opentok"
 
   def index
@@ -60,6 +61,12 @@ class ContactsController < ApplicationController
     redirect_to(:action => "webcast")
   end  
 
+  def mail_session
+
+    @recp=User.find(params[:id])
+    redirect_to conv_session_path(:recp => @recp)
+  end
+
   def webcast
     
     opentok = OpenTok::OpenTok.new(API_OPENTOK[:key], API_OPENTOK[:secret])
@@ -72,4 +79,36 @@ class ContactsController < ApplicationController
     
   end  
 
+  def create_appointment
+    @appointment = Appointment.new
+    @receiver = User.find(params[:id])
+    respond_to do |format|
+
+      if @appointment.create_appointment(params, current_user)
+        if !@appointment.new_record?
+          flash[:notice] = "Appointment scheduled with #{@receiver.first_name} #{@receiver.last_name} for #{params[:appointment][:datetime]}"
+          redirect_to(:action => "index")  
+        end  
+        
+        format.json { head :no_content }
+        format.js
+      else
+        format.json { render json: @appointment.errors.full_messages,
+                                   status: :unprocessable_entity }
+      end
+    end
+  end  
+
+private 
+  def set_customer
+    
+  end
+  
+  def contact_params
+    params.require(:contact).permit(:first_name, :last_name)
+  end
+
 end
+
+
+

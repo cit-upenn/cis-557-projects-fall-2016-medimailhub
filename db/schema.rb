@@ -12,6 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20161128050208) do
 
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "initiator_id"
+    t.integer  "receiver_id"
+    t.datetime "datetime"
+    t.float    "price"
+    t.string   "currency"
+    t.boolean  "paid"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "assets", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at",                 null: false
@@ -96,6 +107,17 @@ ActiveRecord::Schema.define(version: 20161128050208) do
     t.string   "message_id"
     t.index ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
     t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "appointment_id"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.date     "card_expires_on"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|

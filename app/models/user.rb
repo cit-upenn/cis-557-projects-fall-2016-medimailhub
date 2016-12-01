@@ -33,7 +33,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :role, :presence => true
-  validates :phone_one, :presence => true
+  #validates :phone_one, :presence => true
   validates :first_name, :presence => true
   validates :last_name, :presence => true
 
@@ -56,6 +56,12 @@ class User < ApplicationRecord
 
   has_many :assets
   has_many :folders
+  
+  has_many :initiated_appts, class_name:  "Appointment", foreign_key: "initiator_id", dependent: :destroy
+  has_many :received_appts, class_name:  "Appointment",  foreign_key: "receiver_id",  dependent: :destroy
+
+  # has_many :initiated_appts, through: :active_appointments,  source: :receiver
+  # has_many :received_appts, through: :passive_appointments, source: :initiator
 
   def add_contact(other_user)
     active_contacts.create(contact_id: other_user.id)
