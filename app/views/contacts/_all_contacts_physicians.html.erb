@@ -28,18 +28,18 @@
 			<td><%= "#{contact.location}" %></td>
 			<td><%= "#{contact.specialization}" %></td>
 			<!-- Buttons -->
-			<td class = "actions">
-				&nbsp;&nbsp;&nbsp;<%= link_to mail_session_path(contact), class: "btn btn-primary " do %>
+			<td>
+				<%=  link_to mail_session_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-envelope "></span>
 				<% end %>
 			</td>
 			<td>
-				&nbsp;&nbsp;&nbsp;<%= link_to create_session_path(contact), class: "btn btn-primary " do %>
+				<%= link_to create_session_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-facetime-video"></span>
 				<% end %>
 			</td>
 			<td>	
-				&nbsp;&nbsp;&nbsp;<%= link_to delete_contact_path(contact), class: "btn btn-primary " do %>
+				<%= link_to delete_contact_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-trash "></span>
 				<% end %>
 			</td>	

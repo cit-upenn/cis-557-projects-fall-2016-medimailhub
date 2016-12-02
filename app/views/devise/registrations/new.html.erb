@@ -71,12 +71,12 @@
 
   <div class='row'>
   <div class="col-xs-3"><%= f.radio_button(:role, :doctor) %><%= f.label(:role, "Doctor") %></div>
-  <div class="col-xs-6"><%= f.radio_button(:role, :patient) %><%= f.label(:role, "Paient") %></div>
+  <div class="col-xs-6"><%= f.radio_button(:role, :patient) %><%= f.label(:role, "Patient") %></div>
   </div>
 
-  <div class="field">
+  <div class="field" , id='spec'>
     <br />
-    <%= f.text_field :specialization, placeholder: 'Specialization', class: 'form-control' %>
+    <%= f.text_field :specialization, placeholder: 'Specialization', class: 'form-control'  %>
   </div>
 
   <div class="field">
@@ -104,3 +104,10 @@
 <!--<%= render "devise/shared/links" %>-->
 </div>
 </div>
+
+<script>
+  
+  console.log(document.getElementById('user_role_doctor').checked); 
+
+
+</script>
