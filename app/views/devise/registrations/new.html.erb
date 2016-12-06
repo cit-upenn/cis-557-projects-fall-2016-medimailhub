@@ -97,6 +97,7 @@
   <div class="actions">
     <%= f.submit "Sign up", class:'btn-default btn-large button-signup ' %>
   </div>
+  <br>
 
 <% end %>
 <br>
@@ -105,9 +106,33 @@
 </div>
 </div>
 
+<!-- Javascript to hide specialization field -->
 <script>
   
-  console.log(document.getElementById('user_role_doctor').checked); 
+  $( document ).ready(function() {
 
+  hidefield();
+    
+  document.getElementById('user_role_doctor').onclick = function() {
+      showfield();  
+  }
+
+  document.getElementById('user_role_patient').onclick = function() {
+      hidefield();  
+  }
+
+
+  });
+
+  var hidefield = function() {
+    document.getElementById("user_specialization").style.visibility = "hidden";  
+    document.getElementById("spec").style.height = 0;
+  }
+
+  var showfield = function() {
+   document.getElementById("user_specialization").style.visibility = "visible";
+   document.getElementById("spec").style.height = "initial"; 
+  }
+  
 
 </script>
