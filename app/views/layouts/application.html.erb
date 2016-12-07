@@ -15,6 +15,20 @@
   </head>
 
   <body>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBeCK7L0N6njG4RbNSQGyPT14ZvNW57X2E",
+    authDomain: "medimailhub.firebaseapp.com",
+    databaseURL: "https://medimailhub.firebaseio.com",
+    storageBucket: "medimailhub.appspot.com",
+    messagingSenderId: "916203777994"
+  };
+  firebase.initializeApp(config);
+</script>
+
   	<%= render '/layouts/nav_guest' %>
     <br><br><br>
     <div class='container animated fadeIn'>
@@ -26,4 +40,6 @@
     
   </body>
 </html>
+
+
 
