@@ -18,11 +18,11 @@
       <br>
       <%= form_tag :invite do %>
 
-      <label for="email", class="col-form-label">Email</label>
-      <%= email_field :email, autofocus: true, class: 'form-control' %>
+      <%= label_tag(:email, "Email") %>
+      <%= email_field_tag :email%>
       <br>
-      <label for="invitee", class="col-form-label">Name</label>
-      <%= text_field :invitee, class: 'form-control' %>
+      <%= label_tag(:invitee, "Name") %> 
+      <%= text_field_tag  :invitee %>
       
     </div>
      <div class="modal-footer">

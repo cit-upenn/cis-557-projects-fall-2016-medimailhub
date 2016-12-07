@@ -34,6 +34,8 @@ class ConversationsController < ApplicationController
    def invite
       puts params[:email]
       UserMailer.email(current_user.first_name+" "+current_user.last_name, params[:invitee],params[:email]).deliver
+      
+
   end
   private
 

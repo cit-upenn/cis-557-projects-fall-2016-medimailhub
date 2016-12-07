@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
 	include Rails.application.routes.url_helpers
     include ActionView::Helpers::UrlHelper
 
-    default from: 'no-reply@mailboxer.com'
+    default from: 'donotreply@medimail.us'
 	def email(current_user, invitee, email)
 		@user = current_user
     	@url  = 'http://www.medimailhub.us'
