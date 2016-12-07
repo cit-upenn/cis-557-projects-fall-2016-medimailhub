@@ -9,6 +9,11 @@
           <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
         </h4>
         <%= message.body %>
+        <% if message.attachment? %>
+          <strong>Attachment</strong>
+          <%= link_to message.attachment.file.filename, message.attachment.url, target: :blank %>
+        <% end %>
+              
       </div>
     </div>
 <% end %>

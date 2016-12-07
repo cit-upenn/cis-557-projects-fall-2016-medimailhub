@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   
   def message_params
-    params.require(:message).permit(:body, :subject)
+    params.require(:message).permit(:body, :subject,:attachment)
   end
 
   protected

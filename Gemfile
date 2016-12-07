@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+gem 'carrierwave'
+#For carrierwave
+gem 'mini_magick'
 #Enhancements to mailerbox
 gem 'chosen-rails'
 #To annotate 

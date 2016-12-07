@@ -2,7 +2,6 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-      @contacts=current_user.contacts
   end
 
   def new_wrecp
@@ -11,7 +10,8 @@ class ConversationsController < ApplicationController
   def create
     recipients = User.where(id: conversation_params[:recipients])
     #Need to validate null subj and messages
-    conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
+    puts(conversation_params[:attachment])
+    conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject],attachment=conversation_params[:attachment]).conversation
     flash[:success] = "Your message was successfully sent!"
     redirect_to conversation_path(conversation)
   end
@@ -32,7 +32,6 @@ class ConversationsController < ApplicationController
     redirect_to mailbox_inbox_path
   end
    def invite
-      puts params[:email]
       UserMailer.email(current_user.first_name+" "+current_user.last_name, params[:invitee],params[:email]).deliver
       
 
@@ -40,7 +39,7 @@ class ConversationsController < ApplicationController
   private
 
   def conversation_params
-    params.require(:conversation).permit(:subject, :body,recipients:[])
+    params.require(:conversation).permit(:attachment,:subject,:body,recipients:[])
   end
 
  
