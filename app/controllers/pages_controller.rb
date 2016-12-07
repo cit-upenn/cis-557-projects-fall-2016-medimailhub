@@ -4,4 +4,11 @@ class PagesController < ApplicationController
   def launchpad
   end
 
+  def add_push_session
+  	token = params[:token]
+  	pd = PushDetail.new({:token=>token})
+  	current_user.push_details << pd
+  	render "pages/launchpad_noajax"
+  end	
+
 end
