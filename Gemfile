@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+gem 'protected_attributes' 
+
 gem 'carrierwave'
 #For carrierwave
 gem 'mini_magick'

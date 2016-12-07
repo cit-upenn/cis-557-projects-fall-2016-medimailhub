@@ -10,8 +10,8 @@ class ConversationsController < ApplicationController
   def create
     recipients = User.where(id: conversation_params[:recipients])
     #Need to validate null subj and messages
-    puts(conversation_params[:attachment])
     conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject],attachment=conversation_params[:attachment]).conversation
+    
     flash[:success] = "Your message was successfully sent!"
     redirect_to conversation_path(conversation)
   end
