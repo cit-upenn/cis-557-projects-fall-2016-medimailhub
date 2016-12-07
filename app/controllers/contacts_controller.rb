@@ -86,6 +86,7 @@ class ContactsController < ApplicationController
 
       if @appointment.create_appointment(params, current_user)
         if !@appointment.new_record?
+          UserMailer.new_appointment(current_user,receiver).deliver
           flash[:notice] = "Appointment scheduled with #{@receiver.first_name} #{@receiver.last_name} for #{params[:appointment][:datetime]}"
           redirect_to(:action => "index")  
         end  
