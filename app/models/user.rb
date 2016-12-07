@@ -60,8 +60,7 @@ class User < ApplicationRecord
   has_many :initiated_appts, class_name:  "Appointment", foreign_key: "initiator_id", dependent: :destroy
   has_many :received_appts, class_name:  "Appointment",  foreign_key: "receiver_id",  dependent: :destroy
 
-  # has_many :initiated_appts, through: :active_appointments,  source: :receiver
-  # has_many :received_appts, through: :passive_appointments, source: :initiator
+  has_many :push_details
 
   def add_contact(other_user)
     active_contacts.create(contact_id: other_user.id)

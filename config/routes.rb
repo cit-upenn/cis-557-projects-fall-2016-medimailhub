@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   	
   # Match routes for static pages
   get '/launchpad' => 'pages#launchpad'
+  get '/add_push_session' => 'pages#add_push_session'
   get "/contacts/create_session/:id" => "contacts#create_session", as: :create_session
   post "/contacts/create_appointment/:id" => "contacts#create_appointment", as: :create_appointment
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
