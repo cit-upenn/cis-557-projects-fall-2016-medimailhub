@@ -1,7 +1,11 @@
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
   <div class="form-group">
     <%= f.label :recipients %>
-    <%= f.select(:recipients, User.all.collect {|p| [ p.first_name+" "+p.last_name, p.id ] }, {}, { multiple: true , class: "js-example-basic-multiple form-control",id: "recipients",  :required => true })%>
+    <% if current_user.role=='patient'%>
+      <%= f.select(:recipients, current_user.contacts.map {|p| [ p.first_name+" "+p.last_name, p.id ] }, {}, { multiple: true , class: "js-example-basic-multiple form-control",id: "recipients",  :required => true })%>
+    <%else%>
+      <%= f.select(:recipients, User.all.collect {|p| [ p.first_name+" "+p.last_name, p.id ] }, {}, { multiple: true , class: "js-example-basic-multiple form-control",id: "recipients",  :required => true })%>
+    <%end%>
   </div>
   <div class="form-group">
     <%= f.label :subject %>
@@ -15,7 +19,33 @@
   <%= f.submit "Send Message", class: "btn btn-success" %>
 
 <% end %>
+<%= render partial: 'invite_form' %>
 
 <script type="text/javascript">
-$(".js-example-basic-multiple").select2({}).select2('val', [<%= (params[:recp])? params[:recp]:"" %>]);  
+var $exampleMulti = $(".js-example-basic-multiple").select2({tags: true});
+$exampleMulti.select2('val', [<%= (params[:recp])? params[:recp]:"" %>]);
+$(".js-example-basic-multiple").on('select2:select', function (e) { 
+    //var selected_element = $(e.currentTarget);
+    //var select_val = selected_element.val().pop();
+    //console.log(parseInt(select_val),selected_element.val())
+
+  new_val=$.grep($(".js-example-basic-multiple").select2('val'), function (value) {
+    if (!(isNaN(parseInt(value)))){
+      return true;
+    }
+    else{
+      $("#invite_form").modal("show");
+      return false;
+    }
+  });
+  
+  //$(".js-example-basic-multiple").select2('data', new_data);
+  $exampleMulti.val(new_val).trigger("change")
+
+    //if(isNaN(parseInt(select_val))){
+     //   $('#invite_form').modal("show");
+      //  $(".js-example-basic-multiple").select2('val',selected_element.val());
+      //}
+
+});
 </script>

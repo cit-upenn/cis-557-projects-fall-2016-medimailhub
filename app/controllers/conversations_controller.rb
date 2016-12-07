@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-
+      @contacts=current_user.contacts
   end
 
   def new_wrecp
@@ -21,6 +21,7 @@ class ConversationsController < ApplicationController
     # mark conversation as read
     conversation.mark_as_read(current_user)
   end
+
   def trash
     conversation.move_to_trash(current_user)
     redirect_to mailbox_inbox_path
@@ -30,10 +31,17 @@ class ConversationsController < ApplicationController
     conversation.untrash(current_user)
     redirect_to mailbox_inbox_path
   end
+   def invite
+      puts params[:email]
+      UserMailer.email(current_user.first_name+" "+current_user.last_name, params[:invitee],params[:email]).deliver
+      
 
+  end
   private
 
   def conversation_params
     params.require(:conversation).permit(:subject, :body,recipients:[])
   end
+
+ 
 end
