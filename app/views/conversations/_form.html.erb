@@ -15,11 +15,25 @@
   <div class="form-group">
     <%= f.label :message %>
     <%= f.text_area :body, class: 'form-control',placeholder: "Type your message here", id:"message",rows: 4,:required => true  %>
-    <div><%= f.file_field :attachment %></div>
+    
   </div>
-
-  <%= f.submit "Send Message", class: "btn btn-success" %>
-
+  <div class="row">
+    <div class="col-md-9 col-xs-12">
+    <div class="input-group">
+      <label class="input-group-btn">
+        <span class="btn btn-primary btn-darkblue btn-file">
+        Add attachment <%= f.file_field :attachment, style: "display: none;"%>  
+        </span>
+      </label>
+      <input type="text" id="attachment-text" class="form-control" readonly="">
+    </div> 
+    <br>
+    </div> 
+    
+    <div class="col-md-3 col-xs-12">
+    <%= f.submit "Send Message", class: "btn btn-primary btn-darkblue" %>
+    </div>
+  </div>
 <% end %>
 <%= render partial: 'invite_form' %>
 
@@ -49,5 +63,17 @@ $(".js-example-basic-multiple").on('select2:select', function (e) {
       //  $(".js-example-basic-multiple").select2('val',selected_element.val());
       //}
 
+});
+</script>
+
+<script>
+$(document).on('change', ':file', function() {
+    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+    console.log(numFiles);
+    console.log(label);
+    document.getElementById("attachment-text").value = label;
 });
 </script>
