@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'protected_attributes' 
+#gem 'protected_attributes' 
 
 gem 'carrierwave'
 #For carrierwave

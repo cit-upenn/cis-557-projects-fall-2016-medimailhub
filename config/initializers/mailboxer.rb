@@ -19,3 +19,4 @@ Mailboxer.setup do |config|
   config.body_max_length = 32000
   
 end
+
