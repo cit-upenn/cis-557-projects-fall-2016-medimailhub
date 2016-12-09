@@ -82,7 +82,7 @@
             </div> 
             <div class="delete"> 
                  
-                <%= link_to "Delete", folder, data:{confirm: 'Are you sure to delete the folder and all of its contents?'}, method: :delete %>
+                <%= link_to "Delete", folder, method: :delete %>
             </div> 
         </div> 
     </div> 
@@ -101,7 +101,7 @@
            </div> 
            <div class="delete"> 
                
-               <%= link_to "Delete", asset, method: :delete, data: { confirm: 'Are you sure?' } %>
+               <%= link_to "Delete", asset, method: :delete %>
  
            </div> 
        </div> 
