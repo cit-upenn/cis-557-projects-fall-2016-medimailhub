@@ -71,12 +71,12 @@
 
   <div class='row'>
   <div class="col-xs-3"><%= f.radio_button(:role, :doctor) %><%= f.label(:role, "Doctor") %></div>
-  <div class="col-xs-6"><%= f.radio_button(:role, :patient) %><%= f.label(:role, "Paient") %></div>
+  <div class="col-xs-6"><%= f.radio_button(:role, :patient) %><%= f.label(:role, "Patient") %></div>
   </div>
 
-  <div class="field">
+  <div class="field" , id='spec'>
     <br />
-    <%= f.text_field :specialization, placeholder: 'Specialization', class: 'form-control' %>
+    <%= f.text_field :specialization, placeholder: 'Specialization', class: 'form-control'  %>
   </div>
 
   <div class="field">
@@ -97,6 +97,7 @@
   <div class="actions">
     <%= f.submit "Sign up", class:'btn-default btn-large button-signup ' %>
   </div>
+  <br>
 
 <% end %>
 <br>
@@ -104,3 +105,34 @@
 <!--<%= render "devise/shared/links" %>-->
 </div>
 </div>
+
+<!-- Javascript to hide specialization field -->
+<script>
+  
+  $( document ).ready(function() {
+
+  hidefield();
+    
+  document.getElementById('user_role_doctor').onclick = function() {
+      showfield();  
+  }
+
+  document.getElementById('user_role_patient').onclick = function() {
+      hidefield();  
+  }
+
+
+  });
+
+  var hidefield = function() {
+    document.getElementById("user_specialization").style.visibility = "hidden";  
+    document.getElementById("spec").style.height = 0;
+  }
+
+  var showfield = function() {
+   document.getElementById("user_specialization").style.visibility = "visible";
+   document.getElementById("spec").style.height = "initial"; 
+  }
+  
+
+</script>

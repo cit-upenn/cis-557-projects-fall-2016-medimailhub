@@ -15,15 +15,20 @@
   </head>
 
   <body>
+
+
   	<%= render '/layouts/nav_guest' %>
     <br><br><br>
     <div class='container animated fadeIn'>
       <!--<span class="notice"><%= notice %></span>-->
       <!--<span class="alert"><%= alert %></span>-->
       <%= render 'layouts/messages' %>
+      <h1 id="bigOne"></h1>
       <%= yield %>
     </div>
-    
+
   </body>
 </html>
+
+
 

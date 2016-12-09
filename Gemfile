@@ -1,4 +1,9 @@
 source 'https://rubygems.org'
+#gem 'protected_attributes' 
+
+gem 'carrierwave'
+#For carrierwave
+gem 'mini_magick'
 #Enhancements to mailerbox
 gem 'chosen-rails'
 #To annotate 
@@ -79,6 +84,9 @@ group :production do
 	gem 'pg'
 
 	gem 'rails_12factor'
+
+  gem 'newrelic_rpm'
+  
 end	
 
 group :development, :test do

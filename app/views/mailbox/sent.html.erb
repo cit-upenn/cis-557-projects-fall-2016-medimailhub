@@ -1,1 +1,1 @@
-<%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @sent } %>
+<%= render partial: 'conversations/index', locals:  {messages_patient: @sent_patient,messages_doctor: @sent_doctor } %>

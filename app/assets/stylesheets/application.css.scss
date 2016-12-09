@@ -369,8 +369,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
    text-decoration:none; 
 }
 .actions { 
-    float:right; 
-    font-size:11px; 
+ /*   float:right; 
+    font-size:11px; */
 } 
 .share, .rename, .download, .delete{ 
     float:left;  
@@ -431,4 +431,59 @@ input.currency {
 
 #datecalendaricon {
   top: 10px;
+}
+
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#invite_form {
+top:10%;
+/*right:50%;*/
+outline: none;
+}
+
+.label-danger {
+    background-color: transparent;
+}
+
+.btn-darkblue {
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   	
   # Match routes for static pages
   get '/launchpad' => 'pages#launchpad'
+  get '/add_push_session' => 'pages#add_push_session'
   get "/contacts/create_session/:id" => "contacts#create_session", as: :create_session
   post "/contacts/create_appointment/:id" => "contacts#create_appointment", as: :create_appointment
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
   get "/contacts/mail_session/:id" => "contacts#mail_session", as: :mail_session
   get "/conversations/new_wrecp" => "conversations/new_wrecp", as: :conv_session
+  post "/conversations/invite" => "conversations#invite", as: :invite
   #Route for webcast
   get '/webcast' => 'contacts#webcast'
 
@@ -52,8 +54,8 @@ Rails.application.routes.draw do
       get :delete
     end  
   end  
-
   resources :conversations do
+    resources :messages
     member do
       post :reply
       post :trash

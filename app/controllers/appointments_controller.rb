@@ -59,7 +59,9 @@ class AppointmentsController < ApplicationController
         apt = Appointment.find(params[:id])
         if apt.payment
           apt.paid = true
-          apt.save 
+          apt.save
+          UserMailer.appointment_confirmed(apt.initiator, apt.receiver).deliver 
+          UserMailer.appointment_confirmed(apt.receiver, apt.initiator).deliver
           flash[:success] = "Payment sucessfully made"
           redirect_to(:action => "index")
         end
