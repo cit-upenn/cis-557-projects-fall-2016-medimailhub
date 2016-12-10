@@ -118,6 +118,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
-      params.require(:folder).permit(:name, :parent_id, :user_id, :folder_id)
+      params.require(:folder).permit(:name, :parent_id, :user_id, :folder_id, :shared_email, :shared_user_id,  :message)
     end
 end

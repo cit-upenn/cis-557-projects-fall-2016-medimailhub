@@ -45,6 +45,9 @@ Rails.application.routes.draw do
   #for renaming a folder 
   match "browse/:folder_id/rename" => "folders#edit", :via => [:get], :as => "rename_folder"
 
+  #for sharing the folder 
+  match "assets/share" => "assets#share", :via => [:post], :as => "share"
+
   resources :appointments, except: [:create, :edit, :show, :update, :destroy, :new]
   post '/appointments/make_payment/:id' => "appointments#make_payment", as: :make_payment
 

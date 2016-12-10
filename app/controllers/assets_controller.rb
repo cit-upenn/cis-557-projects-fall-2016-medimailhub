@@ -8,15 +8,16 @@ class AssetsController < ApplicationController
 
 
 def index 
-  if user_signed_in? 
-     #show only root folders (which have no parent folders) 
-     @folders = current_user.folders.roots  
-       
-     #show only root files which has no "folder_id" 
-     @assets = current_user.assets.where("folder_id is NULL").order("uploaded_file_file_name desc")       
-  end
+    if user_signed_in? 
+      #show folders shared by others 
+      @being_shared_folders = current_user.shared_folders_by_others 
+    
+      #show only root folders 
+      @folders = current_user.folders.roots 
+      #show only root files 
+      @assets = current_user.assets.where("folder_id is NULL").order("uploaded_file_file_name desc")       
+    end
 end
-
   # GET /assets/1
   # GET /assets/1.json
   def show
@@ -125,22 +126,79 @@ end
 
 
   #This action will let the users download the files (after a simple authorization check) 
+  # def get 
+  #   asset = current_user.assets.find_by_id(params[:id]) 
+  #     if asset 
+  #        send_file asset.uploaded_file.path, :type => asset.uploaded_file_content_type 
+  #     else
+  #       flash[:error] = "Don't be cheeky! Mind your own assets!"
+  #       redirect_to assets_path
+  #     end
+  # end
+
+
   def get 
-    asset = current_user.assets.find_by_id(params[:id]) 
-      if asset 
-         send_file asset.uploaded_file.path, :type => asset.uploaded_file_content_type 
-      else
-        flash[:error] = "Don't be cheeky! Mind your own assets!"
-        redirect_to assets_path
-      end
-  end
+ #first find the asset within own assets 
+ asset = current_user.assets.find_by_id(params[:id]) 
+  
+ #if not found in own assets, check if the current_user has share access to the parent folder of the File 
+ asset ||= Asset.find(params[:id]) if current_user.has_share_access?(Asset.find_by_id(params[:id]).folder) 
+  
+ if asset 
+   #Parse the URL for special characters first before downloading 
+   # data = open(URI.parse(URI.encode(asset.uploaded_file.url))
+   send_file asset.uploaded_file.path, :type => asset.uploaded_file_content_type  
+   # send_data data, :filename => asset.uploaded_file_file_name 
+   #redirect_to asset.uploaded_file.url 
+ else
+   flash[:error] = "Don't be cheeky! Mind your own assets!"
+     redirect_to assets_path 
+ end
+end
 
   #this action is for viewing folders 
-def browse 
-    #get the folders owned/created by the current_user 
-    @current_folder = current_user.folders.find(params[:folder_id])   
+# def browse 
+#     #get the folders owned/created by the current_user 
+#     @current_folder = current_user.folders.find(params[:folder_id])   
   
-    if @current_folder
+#     if @current_folder
+#        #if under a sub folder, we shouldn't see shared folders 
+#       @being_shared_folders = []
+    
+#       #getting the folders which are inside this @current_folder 
+#       @folders = @current_folder.children 
+  
+#       #We need to fix this to show files under a specific folder if we are viewing that folder 
+#      # @assets = current_user.assets.order("uploaded_file_file_name desc") 
+#        #show only files under this current folder 
+#       @assets = @current_folder.assets.order("uploaded_file_file_name desc")
+  
+#       render "index"
+#     else
+#       flash[:error] = "Don't be cheeky! Mind your own folders!"
+#       redirect_to '/assets' 
+#     end
+# end
+
+
+
+def browse 
+  #first find the current folder within own folders 
+  @current_folder = current_user.folders.find_by_id(params[:folder_id])   
+  @is_this_folder_being_shared = false if @current_folder #just an instance variable to help hiding buttons on View 
+    
+  #if not found in own folders, find it in being_shared_folders 
+  if @current_folder.nil? 
+    folder = Folder.find_by_id(params[:folder_id]) 
+      
+    @current_folder ||= folder if current_user.has_share_access?(folder) 
+    @is_this_folder_being_shared = true if @current_folder #just an instance variable to help hiding buttons on View 
+      
+  end
+    
+  if @current_folder
+       #if under a sub folder, we shouldn't see shared folders 
+      @being_shared_folders = []
     
       #getting the folders which are inside this @current_folder 
       @folders = @current_folder.children 
@@ -157,6 +215,46 @@ def browse
     end
 end
 
+
+
+
+
+
+
+ 
+
+
+#this handles ajax request for inviting others to share folders 
+def share     
+    #first, we need to separate the emails with the comma 
+    email_addresses = params[:email_addresses].split(",") 
+      
+    email_addresses.each do |email_address| 
+      #save the details in the ShareFolder table 
+      @shared_folder = current_user.shared_folders.new
+      @shared_folder.folder_id = params[:folder_id] 
+      @shared_folder.shared_email = email_address 
+    
+      #getting the shared user id right the owner the email has already signed up with ShareBox 
+      #if not, the field "shared_user_id" will be left nil for now. 
+      shared_user = User.find_by_email(email_address) 
+      @shared_folder.shared_user_id = shared_user.id if shared_user 
+    
+      @shared_folder.message = params[:message] 
+      @shared_folder.save 
+    
+
+
+      #now we need to send email to the Shared User 
+    end
+  
+    #since this action is mainly for ajax (javascript request), we'll respond with js file back (refer to share.js.erb) 
+    respond_to do |format| 
+      format.js { 
+      } 
+    end
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_asset
@@ -165,6 +263,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_params
-      params.require(:asset).permit(:user_id, :uploaded_file, :folder_id, :parent_id)
+      params.require(:asset).permit(:user_id, :uploaded_file, :folder_id, :parent_id,  :shared_email, :shared_user_id,  :message)
     end
 end
