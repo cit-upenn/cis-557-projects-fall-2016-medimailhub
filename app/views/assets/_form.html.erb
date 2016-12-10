@@ -12,10 +12,38 @@
   <% end %> 
   
    <p> 
-       <%= f.label :uploaded_file, "File" %><br /> 
-       <%= f.file_field :uploaded_file %> 
-     </p> 
+    <br>
+    <br>
+  <div class="row">
+    <div class="col-md-9 col-xs-12">
+        <div class="input-group">
+      <label class="input-group-btn">
+        <span class="btn btn-primary btn-file">
+        Add attachment <%= f.file_field :uploaded_file, style: "display: none;"%>  
+        </span>
+      </label>
+      <input type="text" id="attachment-text" class="form-control" readonly="">
+    </div>
+  </div>
+       <!-- <%= f.label :uploaded_file, "File" %><br /> -->
+       <!-- <%= f.file_field :uploaded_file , class: 'form-control'%> -->
+     
+     <div class="col-md-3 col-xs-12">
        <%= f.hidden_field :folder_id %> 
- <p><%= f.submit "Upload" %></p> 
+ <%= f.submit "Upload", class:'btn btn-large btn-primary ' %></p> 
+</div>
+</div>
 <% end %>
     
+
+<script>
+$(document).on('change', ':file', function() {
+    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+    console.log(numFiles);
+    console.log(label);
+    document.getElementById("attachment-text").value = label;
+});
+</script>    

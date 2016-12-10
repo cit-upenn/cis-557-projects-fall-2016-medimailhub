@@ -13,15 +13,17 @@
     </div>
   <% end %>
  <p> 
-    <%= f.label :name %><br /> 
-    <%= f.text_field :name %> 
+  <br>
+  <br>
+    <!--<%= f.label :name %><br /> -->
+    <%= f.text_field :name, class: 'form-control',placeholder: "name" %> 
  </p> 
    <%= f.hidden_field :parent_id %> 
  <p> 
 <% if @folder.new_record? %> 
-   <%= f.submit "Create Folder" %> 
+   <%= f.submit "Create Folder", class:'btn btn-large btn-primary ' %> 
 <% else %> 
-   <%= f.submit "Rename Folder" %> 
+   <%= f.submit "Rename Folder", class:'btn btn-large btn-primary ' %> 
 <% end %> 
 </p> 
 <% end %>
