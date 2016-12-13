@@ -1,3 +1,4 @@
+require "#{Rails.root}/app/controllers/push_notifications"
 class AppointmentsController < ApplicationController
   
   def index
@@ -60,6 +61,15 @@ class AppointmentsController < ApplicationController
         if apt.payment
           apt.paid = true
           apt.save
+          initiator = User.find(apt.initiator)
+          receiver = User.find(apt.receiver)
+
+          notification_i = PushNotification.new("Appointment", "An appointment with #{initiator.first_name} #{initiator.last_name} has just been confirmed", appointments_url, apt.receiver)
+          notification_i.push()
+
+          notification_r = PushNotification.new("Appointment", "An appointment with #{receiver.first_name} #{receiver.last_name} has just been confirmed", appointments_url, apt.initiator)
+          notification_r.push()
+
           UserMailer.appointment_confirmed(apt.initiator, apt.receiver).deliver 
           UserMailer.appointment_confirmed(apt.receiver, apt.initiator).deliver
           flash[:success] = "Payment sucessfully made"
