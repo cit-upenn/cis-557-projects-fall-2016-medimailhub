@@ -233,7 +233,9 @@ def share
       #save the details in the ShareFolder table 
       @shared_folder = current_user.shared_folders.new
       @shared_folder.folder_id = params[:folder_id] 
-      @shared_folder.shared_email = email_address 
+      @shared_folder.shared_email = email_address
+
+       
     
       #getting the shared user id right the owner the email has already signed up with ShareBox 
       #if not, the field "shared_user_id" will be left nil for now. 
