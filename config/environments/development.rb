@@ -5,7 +5,7 @@ Rails.application.configure do
   }
   
  # Constants
-  API_OPENTOK = {:key => "45714262", :secret => "57bba80a9e8efec04ae489580d5c9e7a6ba86ad8"}
+  API_OPENTOK = {:key => "45733152", :secret => "e06c46e0a024c7b34ce6175c251eff4bb6b7b59f"}
   
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }

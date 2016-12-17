@@ -1,3 +1,5 @@
+require "#{Rails.root}/app/controllers/push_notifications"
+
 class ContactsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_customer, only: [:create_appointment]
@@ -58,6 +60,10 @@ class ContactsController < ApplicationController
     # Update session id to the contacts database
     contact.session_id = session_id
     contact.save
+    
+    notification = PushNotification.new("Incoming call", "#{current_user.first_name} #{current_user.last_name} is calling you", webcast_url, contact.id)
+    notification.push()
+
     redirect_to(:action => "webcast")
   end  
 
@@ -86,6 +92,9 @@ class ContactsController < ApplicationController
 
       if @appointment.create_appointment(params, current_user)
         if !@appointment.new_record?
+          notification = PushNotification.new("Appointment", "Dr. #{current_user.first_name} #{current_user.last_name} has scheduled an appointment with you", appointments_url, @receiver.id)
+          notification.push()
+
           UserMailer.new_appointment(current_user,@receiver).deliver
           flash[:notice] = "Appointment scheduled with #{@receiver.first_name} #{@receiver.last_name} for #{params[:appointment][:datetime]}"
           redirect_to(:action => "index")  
