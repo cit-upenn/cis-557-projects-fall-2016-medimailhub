@@ -98,6 +98,10 @@ has_many :shared_folders_by_others, through: :being_shared_folders, source: :fol
 
 #to check if a user has acess to this specific folder 
 def has_share_access?(folder) 
+    
+    if(!folder) 
+      return true
+    end  
     #has share access if the folder is one of one of his own 
     return true if self.folders.include?(folder) 
   

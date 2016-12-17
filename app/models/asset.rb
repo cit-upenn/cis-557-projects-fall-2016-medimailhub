@@ -35,6 +35,5 @@ class Asset < ApplicationRecord
     return Folder.find(self.folder_id)
     end
   end  
-
 end
 
