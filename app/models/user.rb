@@ -80,7 +80,7 @@ has_many :shared_folders_by_others, through: :being_shared_folders, source: :fol
     active_contacts.find_by(contact_id: other_user.id).destroy
   end
 
-  after_create :check_and_assign_shared_ids_to_shared_folders
+  # after_create :check_and_assign_shared_ids_to_shared_folders
   
 # #this is to make sure the new user ,of which the email addresses already used to share folders by others, to have access to those folders 
 # def check_and_assign_shared_ids_to_shared_folders     
