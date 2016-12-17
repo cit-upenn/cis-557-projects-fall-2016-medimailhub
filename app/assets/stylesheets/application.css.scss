@@ -519,5 +519,24 @@ outline: none;
 }
 
 .select2 {
-  width: 87% !important;
+  width: 100% !important;
+}
+
+
+.ui-draggable .ui-dialog-titlebar {
+    cursor: move;
+    background-color: white;
+    color: #1a82d4; 
+    border-color: white;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+
+    border-color: white;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+    background-color: #6fadf3;
+    color: white;
+    border: #6fadf3;
 }

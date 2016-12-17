@@ -93,7 +93,7 @@
  
 <!-- Listing Shared Folders (the folders shared by others) -->
 <% @being_shared_folders.each do |folder| %> 
-
+  <tr>
   <td> <i class="fa fa-folder " aria-hidden="true" style="color: #6fadf3;"></i> <%= link_to folder.name, browse_path(folder) , style: "color: black;"%> </td>
 
   <td>-</td>
@@ -104,7 +104,7 @@
   <td> </td>
   <td> </td>
   <td> </td>
-
+</tr>
      
 <% end %> 
 
@@ -160,7 +160,7 @@
 <div id="invitation_form" title="Invite others to share" style="display:none">
 
     <%= form_tag '/assets/share' do  %>  
-    <% if current_user.role=='patient'%>
+
     <% users = [] %>
     <% current_user.contacts.each do |uu|%>
         <% u = User.new %>
@@ -168,20 +168,12 @@
         <% u.first_name = "#{uu.first_name} #{uu.last_name}" %>
         <% users << u %>
     <% end %>
-    <%= select_tag "people", options_from_collection_for_select(users,"id",:first_name ), multiple: true, class: 'form-control js-example-basic-multiple',id: "recipients"%>
-
-    <%else%>
-    <%= select_tag "people", options_from_collection_for_select(User.all, "id", "first_name"), multiple: true, class: 'form-control js-example-basic-multiple',id: "recipients"%>
-    <%end%>
+    <%= select_tag "people", options_from_collection_for_select(users,"id",:first_name ), multiple: true, class: 'form-control js-example-basic-multiple',id: "recipients", placeholder: "Share with ..."%>
 
 
     
     <br>
-     <label for="email_addresses">Enter recipient email addresses here</label><br />
-      <%= text_field_tag 'email_addresses', "", :class => 'text ui-widget-content ui-corner-all'%> 
-            <br /><br /> 
-            <label for="message">Optional message</label><br /> 
-            <%= text_area_tag 'message',"",  :class => 'text ui-widget-content ui-corner-all'%> 
+
             <%= hidden_field_tag "folder_id" %>
     <% end %>  
 
@@ -219,7 +211,6 @@ $(".js-example-basic-multiple").on('select2:select', function (e) {
 $( document ).ready(function () {  
     //open the invitation form when a share button is clicked 
     $( ".share a" ) 
-            .button() 
             .click(function() { 
                 //assign this specific Share link element into a variable called "a" 
                 var a = this; 
@@ -236,8 +227,8 @@ $( document ).ready(function () {
                 //Add the dialog box loading here
                 //the dialog box customization 
 $( "#invitation_form" ).dialog({ 
-    height: 300, 
-    width: 600, 
+    height: 160, 
+    width: 400, 
     modal: true, 
     buttons: { 
         //First button 

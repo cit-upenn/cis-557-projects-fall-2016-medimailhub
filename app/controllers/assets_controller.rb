@@ -1,3 +1,5 @@
+require "#{Rails.root}/app/controllers/push_notifications"
+
 class AssetsController < ApplicationController
   before_action :authenticate_user!  #authenticate for users before any methods is called
   before_action :set_asset, only: [:show, :edit, :update, :destroy]
@@ -226,30 +228,30 @@ end
 
 #this handles ajax request for inviting others to share folders 
 def share     
-    #first, we need to separate the emails with the comma 
-    puts "---------------------"
-    puts params[:people].inspect
-    puts "++++++++++++++++++++++"
-    email_addresses = params[:email_addresses].split(",") 
+
+    people = params[:people]  
       
-    email_addresses.each do |email_address| 
+    people.each do |user_id| 
+      #getting the shared user id right the owner the email has already signed up with ShareBox 
+      #if not, the field "shared_user_id" will be left nil for now. 
+      shared_user = User.find(user_id.to_i)
+
       #save the details in the ShareFolder table 
       @shared_folder = current_user.shared_folders.new
       @shared_folder.folder_id = params[:folder_id] 
-      @shared_folder.shared_email = email_address
+      @shared_folder.shared_email = shared_user.email
 
        
     
-      #getting the shared user id right the owner the email has already signed up with ShareBox 
-      #if not, the field "shared_user_id" will be left nil for now. 
-      shared_user = User.find_by_email(email_address) 
+       
       @shared_folder.shared_user_id = shared_user.id if shared_user 
     
       @shared_folder.message = params[:message] 
       @shared_folder.save 
     
 
-
+      notification = PushNotification.new("Shared Document", "#{current_user.first_name} #{current_user.last_name} has shared documents with you", assets_url, shared_user.id)
+      notification.push()
      #now we need to send email to the Shared User 
     end
   

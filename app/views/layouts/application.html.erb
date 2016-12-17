@@ -25,7 +25,7 @@
 
   	<%= render '/layouts/nav_guest' %>
     <br><br><br>
-    <div class='container animated fadeIn'>
+    <div class='container animated fadeIn' id='cont'>
       <!--<span class="notice"><%= notice %></span>-->
       <!--<span class="alert"><%= alert %></span>-->
       <%= render 'layouts/messages' %>
@@ -33,7 +33,42 @@
       <%= yield %>
     </div>
 
+  <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBeCK7L0N6njG4RbNSQGyPT14ZvNW57X2E",
+      authDomain: "medimailhub.firebaseapp.com",
+      databaseURL: "https://medimailhub.firebaseio.com",
+      storageBucket: "medimailhub.appspot.com",
+      messagingSenderId: "916203777994"
+    };
+    firebase.initializeApp(config);
+
+    const messaging2 = firebase.messaging();
+
+    messaging2.onMessage(function(payload) {
+
+      msg = "<br><br><div class=\"alert alert-notice\"><a href=\"#\" data-dismiss=\"alert\" class=\"close\">×</a><ul id=\"test\"><li>"+payload.notification.body+"</li></ul></div>";
+    document.getElementById('cont').innerHTML = msg + document.getElementById('cont').innerHTML;
+    })
+
+
+
+    // var bigOne = document.getElementById('bigOne');
+    // var dbRef = firebase.database().ref().child('text');
+    // dbRef.on('value',snap => bigOne.innerText = snap.val());
+
+  </script>
+
+
   </body>
+
 </html>
 
 
