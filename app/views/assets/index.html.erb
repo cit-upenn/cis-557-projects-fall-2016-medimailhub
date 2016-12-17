@@ -161,10 +161,21 @@
 
     <%= form_tag '/assets/share' do  %>  
     <% if current_user.role=='patient'%>
-      <%= select("", current_user.contacts.map {|p| [ p.first_name+" "+p.last_name, p.id ] }, {}, { multiple: true , class: "js-example-basic-multiple form-control",id: "recipients",  :required => true })%>
+    <% users = [] %>
+    <% current_user.contacts.each do |uu|%>
+        <% u = User.new %>
+        <% u.id = uu.id %>
+        <% u.first_name = "#{uu.first_name} #{uu.last_name}" %>
+        <% users << u %>
+    <% end %>
+    <%= select_tag "people", options_from_collection_for_select(users,"id",:first_name ), multiple: true, class: 'form-control js-example-basic-multiple',id: "recipients"%>
+
     <%else%>
-      <%= select( "", User.all.collect {|p| [ p.first_name+" "+p.last_name, p.id ] }, {}, { multiple: true , class: "js-example-basic-multiple form-control",id: "recipients",  :required => true })%>
+    <%= select_tag "people", options_from_collection_for_select(User.all, "id", "first_name"), multiple: true, class: 'form-control js-example-basic-multiple',id: "recipients"%>
     <%end%>
+
+
+    
     <br>
      <label for="email_addresses">Enter recipient email addresses here</label><br />
       <%= text_field_tag 'email_addresses', "", :class => 'text ui-widget-content ui-corner-all'%> 
@@ -172,7 +183,36 @@
             <label for="message">Optional message</label><br /> 
             <%= text_area_tag 'message',"",  :class => 'text ui-widget-content ui-corner-all'%> 
             <%= hidden_field_tag "folder_id" %>
-    <% end %>                
+    <% end %>  
+
+    <script type="text/javascript">
+var $exampleMulti = $(".js-example-basic-multiple").select2({tags: true});
+$exampleMulti.select2('val', [<%= (params[:recp])? params[:recp]:"" %>]);
+$(".js-example-basic-multiple").on('select2:select', function (e) { 
+    //var selected_element = $(e.currentTarget);
+    //var select_val = selected_element.val().pop();
+    //console.log(parseInt(select_val),selected_element.val())
+
+  new_val=$.grep($(".js-example-basic-multiple").select2('val'), function (value) {
+    if (!(isNaN(parseInt(value)))){
+      return true;
+    }
+    
+  });
+  
+  //$(".js-example-basic-multiple").select2('data', new_data);
+  $exampleMulti.val(new_val).trigger("change")
+
+    //if(isNaN(parseInt(select_val))){
+     //   $('#invite_form').modal("show");
+      //  $(".js-example-basic-multiple").select2('val',selected_element.val());
+      //}
+
+});
+</script>
+
+
+
 </div>
 
 <script>

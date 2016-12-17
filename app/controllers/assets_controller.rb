@@ -227,6 +227,9 @@ end
 #this handles ajax request for inviting others to share folders 
 def share     
     #first, we need to separate the emails with the comma 
+    puts "---------------------"
+    puts params[:people].inspect
+    puts "++++++++++++++++++++++"
     email_addresses = params[:email_addresses].split(",") 
       
     email_addresses.each do |email_address| 
@@ -247,7 +250,7 @@ def share
     
 
 
-      #now we need to send email to the Shared User 
+     #now we need to send email to the Shared User 
     end
   
     #since this action is mainly for ajax (javascript request), we'll respond with js file back (refer to share.js.erb) 
