@@ -374,16 +374,16 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
  /*   float:right; 
     font-size:11px; */
 } 
-.share, .rename, .download, .delete{ 
+.rename, .download, .delete{ 
     float:left;  
 } 
-.asset_details .share a,.asset_details .rename a,.asset_details .download a,.asset_details .delete a{ 
+.asset_details .rename a,.asset_details .download a,.asset_details .delete a{ 
     border: 1px solid #CFE9FF; 
     font-size: 11px; 
     margin-left: 5px; 
     padding: 0 2px; 
 } 
-.asset_details .share a:hover,.asset_details .rename a:hover,.asset_details .download a:hover,.asset_details .delete a:hover{ 
+.asset_details .rename a:hover,.asset_details .download a:hover,.asset_details .delete a:hover{ 
     border:1px solid #8FCDFF; 
 } 
   
@@ -494,11 +494,11 @@ outline: none;
     font-size: 14px ; 
     padding: 3px 10px !important; 
 } 
-.share .ui-button-text-only .ui-button-text { 
+/*.share .ui-button-text-only .ui-button-text { 
     padding: 0 2px !important; 
     font-size:11px; 
     font-weight:normal; 
-} 
+} */
 #invitation_form{ 
     font-size:14px; 
 } 
