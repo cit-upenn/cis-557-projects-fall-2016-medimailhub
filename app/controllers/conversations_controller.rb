@@ -1,3 +1,4 @@
+require "#{Rails.root}/app/controllers/push_notifications"
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
@@ -13,6 +14,10 @@ class ConversationsController < ApplicationController
     conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject],nil,conversation_params[:attachment]).conversation
    
     flash[:success] = "Your message was successfully sent!"
+    recipients.each do |contact|
+      notification = PushNotification.new("New message", "You have a new message from #{current_user.first_name} #{current_user.last_name}", mailbox_inbox_url, contact.id)
+      notification.push()
+    end
     redirect_to conversation_path(conversation)
   end
 

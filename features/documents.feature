@@ -2,7 +2,7 @@ Feature: Document Uploads
 
 As a user,
 I want to be able to create folders and upload documents
-So that I can access and share them later
+So that my patient/doctor can access and share them later
 
 
 	Scenario: Create new folder 
