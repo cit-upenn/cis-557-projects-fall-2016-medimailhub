@@ -1,5 +1,6 @@
 Rails.application.configure do
 
+  Capybara.javascript_driver = :webkit
   config.action_dispatch.default_headers = {
     'X-Frame-Options' => 'ALLOWALL'
   }

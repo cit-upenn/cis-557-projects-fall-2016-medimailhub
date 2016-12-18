@@ -21,7 +21,8 @@ class Appointment < ApplicationRecord
 
   def validate_and_pay(payment_params, payment, ip_address)
     if (payment_params[:payment])
-      payment = Payment.new(payment_parameters(payment_params))
+      # payment = Payment.new(payment_parameters(payment_params))
+      payment = Payment.new(payment_params[:payment])
       payment.ip_address = ip_address
       payment.appointment_id = self.id
       create_card(payment_params[:payment])

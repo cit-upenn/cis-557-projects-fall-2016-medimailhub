@@ -1,5 +1,5 @@
 Given(/^I have logged in$/) do
-  User.create(email: "username@example.com", password: "testtesttest", first_name: "User", last_name: "user", phone_one: "111111111")
+  User.create(email: "username@example.com", password: "testtesttest", first_name: "User", last_name: "user", phone_one: "111111111", role: "doctor")
   visit(new_user_registration_path)
   fill_in 'login_email', :with => "username@example.com"
   fill_in 'login_password', :with => "testtesttest"
@@ -12,7 +12,8 @@ Given(/^I'm on the mailbox page$/) do
 end
 
 When (/^I click the inbox button$/) do
-	click_link "Inbox"
+	first(:link, "Inbox").click
+	
 end
 
 And (/^Another user exists/) do 
@@ -25,7 +26,8 @@ Then (/^I should be able to view my Inbox$/) do
 end
 
 When (/^I click the sent button$/) do
-	click_link "Sent"
+	# click_link "Sent"
+	first(:link, "Sent").click
 end
 
 
@@ -34,7 +36,8 @@ Then (/^I should be able to view my Sent$/) do
 end
 
 When (/^I click the trash button$/) do
-	click_link "Trash"
+	# click_link "Trash"
+	first(:link, "Trash").click
 end
 
 
@@ -43,7 +46,9 @@ Then (/^I should be able to view my Trash$/) do
 end
 
 When (/^I click the compose button$/) do 
-	click_link "Compose"
+	
+	 first(:link, "Compose").click
+
 end
 
 Then (/^I should be able to view the compose page$/) do

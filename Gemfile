@@ -60,6 +60,11 @@ gem 'credit_card_validations'
 
 gem 'font-awesome-sass'
 
+gem 'simplecov', :require => false, :group => :test
+gem 'selenium-webdriver'
+
+gem "capybara-webkit"
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'	
