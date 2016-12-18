@@ -1,5 +1,6 @@
 require 'test_helper'
 
+
 class AppointmentTest < ActiveSupport::TestCase
   test "Create new appointment" do
     initiator = User.create(email: "username@example.com", password: "testtesttest", first_name: "User", last_name: "user", phone_one: "111111111")

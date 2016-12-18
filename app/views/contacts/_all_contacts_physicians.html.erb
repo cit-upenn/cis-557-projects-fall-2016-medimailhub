@@ -14,9 +14,16 @@
 		<th> Location </th>
 		<th> Specialization </th>
 		<th> Message </th>
-		<th> Call </th>
+		<% if current_user.role != "patient" %>
+			<th> Call </th>
+		<% end %>	
+		
 		<th> Delete </th>
-		<th> Appointment </th>
+
+		<% if current_user.role != "patient" %>
+			<th> Appointment </th>
+		<% end %>
+			
 	</tr>
 </thead>
 	<!-- Body -->
@@ -33,16 +40,23 @@
     				<span class="glyphicon glyphicon-envelope "></span>
 				<% end %>
 			</td>
+
+			<% if current_user.role != "patient" %>
 			<td>
 				<%= link_to create_session_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-facetime-video"></span>
 				<% end %>
 			</td>
+			<% end %>
+
+
 			<td>	
 				<%= link_to delete_contact_path(contact), class: "btn btn-primary " do %>
     				<span class="glyphicon glyphicon-trash "></span>
 				<% end %>
-			</td>	
+			</td>
+
+			<% if current_user.role != "patient" %>	
 			<td>	
 				<%= link_to  create_appointment_path(contact),:method => "post", remote: true, :class => 'btn btn-primary' do%>
 				<span class="glyphicon glyphicon-calendar "></span>
@@ -50,6 +64,7 @@
 				<% end %>
     
 			</td>
+			<% end %>
 		</tr>
 		<%end%>
 	</tbody>	
