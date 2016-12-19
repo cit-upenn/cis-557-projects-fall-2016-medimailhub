@@ -10,15 +10,15 @@ User.destroy_all
 ContactRelationship.destroy_all
 
 user1 = User.new(:email => "jacobv1992@gmail.com", :password => "Jac560037_", :first_name => "Jacob", :last_name => "varghese", :role => "doctor", :specialization => "Cardiology", :location => "Philadelphia", :phone_one => "123455667")
-user2 = User.new(:email => "user2@user2.com", :password => "user2user2", :first_name => "User2", :last_name => "user2", :location => "Philadelphia",  :phone_one => "123455667")
+user2 = User.new(:email => "user2@user2.com", :password => "user2user2", :first_name => "User2", :last_name => "user2", :location => "Philadelphia",  :phone_one => "123455667", d_o_b: "1992-06-08 00:00:00")
 user3 = User.new(:email => "user3@user3.com", :password => "user3user3", :first_name => "User3", :last_name => "user3", :role => "doctor", :specialization => "Cardiology", :location => "Philadelphia",  :phone_one => "123455667")
-user4 = User.new(:email => "user4@user4.com", :password => "user4user4", :first_name => "User4", :last_name => "user4", :location => "Philadelphia",  :phone_one => "123455667")
+user4 = User.new(:email => "user4@user4.com", :password => "user4user4", :first_name => "User4", :last_name => "user4", :location => "Philadelphia",  :phone_one => "123455667", d_o_b: "1993-07-08 00:00:00")
 user4 = User.new(:email => "user4@user4.com", :password => "user4user4", :first_name => "User4", :last_name => "user4", :role => "doctor", :specialization => "Cardiology", :location => "Philadelphia",  :phone_one => "123455667")
-user5 = User.new(:email => "user5@user5.com", :password => "user5user5", :first_name => "User5", :last_name => "user5", :location => "Philadelphia",  :phone_one => "123455667")
+user5 = User.new(:email => "user5@user5.com", :password => "user5user5", :first_name => "User5", :last_name => "user5", :location => "Philadelphia",  :phone_one => "123455667", d_o_b: "1982-05-08 00:00:00")
 user6 = User.new(:email => "user6@user6.com", :password => "user6user6", :first_name => "User6", :last_name => "user6", :role => "doctor", :specialization => "Cardiology", :location => "Philadelphia",  :phone_one => "123455667")
-user7 = User.new(:email => "user7@user7.com", :password => "user7user7", :first_name => "User7", :last_name => "user7", :location => "Philadelphia",  :phone_one => "123455667")
+user7 = User.new(:email => "user7@user7.com", :password => "user7user7", :first_name => "User7", :last_name => "user7", :location => "Philadelphia",  :phone_one => "123455667", d_o_b: "1972-06-08 00:00:00")
 user8 = User.new(:email => "user8@user8.com", :password => "user8user8", :first_name => "User8", :last_name => "user8", :role => "doctor", :specialization => "Cardiology", :location => "Philadelphia",  :phone_one => "123455667")
-user9 = User.new(:email => "user9@user9.com", :password => "user9user9", :first_name => "User9", :last_name => "user9", :location => "Philadelphia",  :phone_one => "123455667")
+user9 = User.new(:email => "user9@user9.com", :password => "user9user9", :first_name => "User9", :last_name => "user9", :location => "Philadelphia",  :phone_one => "123455667", d_o_b: "1962-06-08 00:00:00")
 
 user1.save
 user2.save
